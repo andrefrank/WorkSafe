@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Equipment" representedClassName=".Equipment" syncable="YES">
+        <attribute name="inventoryNumber" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nextCheckDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="photoURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="techInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uniqueID" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="facility" maxCount="1" deletionRule="Nullify" destinationEntity="Facility" inverseName="equipments" inverseEntity="Facility" syncable="YES"/>
+    </entity>
+    <entity name="Facility" representedClassName=".Facility" syncable="YES">
+        <attribute name="department" attributeType="String" syncable="YES"/>
+        <attribute name="floor" attributeType="Integer 16" minValueString="0" maxValueString="4" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="photoURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="plant" attributeType="Integer 16" minValueString="1" maxValueString="5" defaultValueString="5" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="roomNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="equipments" toMany="YES" deletionRule="Nullify" destinationEntity="Equipment" inverseName="facility" inverseEntity="Equipment" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Facility" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Equipment" positionX="-63" positionY="18" width="128" height="163"/>
+    </elements>
+</model>

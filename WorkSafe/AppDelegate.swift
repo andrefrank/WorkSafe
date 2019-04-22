@@ -7,17 +7,37 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    var workSafeDataContainer:NSPersistentContainer!
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        createWorkSafeContainer { [unowned self] (container) in
+            self.workSafeDataContainer=container
+            print("Core data stack initialized...")
+            
+            //Find specific controller in viewcontroller chain
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController else {fatalError("No TabBarController available")}
+            guard let navController=tabBarController.viewControllers?.first as? UINavigationController else {fatalError("No NavigationController available")}
+            guard let equipmentController = navController.viewControllers.first as? EquipmentController else {fatalError("Wrong ViewController in controller chain")}
+            
+            //Set data context
+            equipmentController.managedObjectContext = container.viewContext
+            
+            //At least show the main TabbarController
+            self.window?.rootViewController = tabBarController
+            
+        }
         return true
     }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

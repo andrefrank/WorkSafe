@@ -7,21 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67BBD883226E36410001915D /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BBD882226E36410001915D /* Equipment.swift */; };
+		67BBD885226E447A0001915D /* AddFacilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BBD884226E447A0001915D /* AddFacilityController.swift */; };
 		67F2A0AD226DEF340035BB84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0AC226DEF340035BB84 /* AppDelegate.swift */; };
-		67F2A0AF226DEF340035BB84 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0AE226DEF340035BB84 /* ViewController.swift */; };
 		67F2A0B2226DEF340035BB84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67F2A0B0226DEF340035BB84 /* Main.storyboard */; };
 		67F2A0B4226DEF350035BB84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67F2A0B3226DEF350035BB84 /* Assets.xcassets */; };
 		67F2A0B7226DEF350035BB84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67F2A0B5226DEF350035BB84 /* LaunchScreen.storyboard */; };
+		67F2A0C2226DF3AE0035BB84 /* EquipmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0C1226DF3AE0035BB84 /* EquipmentController.swift */; };
+		67F2A0C5226DF4130035BB84 /* EquipmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0C4226DF4130035BB84 /* EquipmentCell.swift */; };
+		67F2A0C9226DF4580035BB84 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0C8226DF4580035BB84 /* SegueHandler.swift */; };
+		67F2A0CB226DFF040035BB84 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0CA226DFF040035BB84 /* TableViewDataSource.swift */; };
+		67F2A0CE226E0B3E0035BB84 /* WorkSafe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0CC226E0B3E0035BB84 /* WorkSafe.xcdatamodeld */; };
+		67F2A0D0226E14B90035BB84 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0CF226E14B90035BB84 /* Facility.swift */; };
+		67F2A0D2226E173F0035BB84 /* Managed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0D1226E173F0035BB84 /* Managed.swift */; };
+		67F2A0D4226E17CA0035BB84 /* NSManagedObjectContext+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0D3226E17CA0035BB84 /* NSManagedObjectContext+Extension.swift */; };
+		67F2A0D6226E19730035BB84 /* WorkSafeDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0D5226E19730035BB84 /* WorkSafeDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67BBD882226E36410001915D /* Equipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipment.swift; sourceTree = "<group>"; };
+		67BBD884226E447A0001915D /* AddFacilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFacilityController.swift; sourceTree = "<group>"; };
 		67F2A0A9226DEF340035BB84 /* WorkSafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkSafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67F2A0AC226DEF340035BB84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		67F2A0AE226DEF340035BB84 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		67F2A0B1226DEF340035BB84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		67F2A0B3226DEF350035BB84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67F2A0B6226DEF350035BB84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		67F2A0B8226DEF350035BB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67F2A0C1226DF3AE0035BB84 /* EquipmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentController.swift; sourceTree = "<group>"; };
+		67F2A0C4226DF4130035BB84 /* EquipmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentCell.swift; sourceTree = "<group>"; };
+		67F2A0C8226DF4580035BB84 /* SegueHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
+		67F2A0CA226DFF040035BB84 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
+		67F2A0CD226E0B3E0035BB84 /* WorkSafe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkSafe.xcdatamodel; sourceTree = "<group>"; };
+		67F2A0CF226E14B90035BB84 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
+		67F2A0D1226E173F0035BB84 /* Managed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managed.swift; sourceTree = "<group>"; };
+		67F2A0D3226E17CA0035BB84 /* NSManagedObjectContext+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extension.swift"; sourceTree = "<group>"; };
+		67F2A0D5226E19730035BB84 /* WorkSafeDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSafeDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +74,72 @@
 		67F2A0AB226DEF340035BB84 /* WorkSafe */ = {
 			isa = PBXGroup;
 			children = (
+				67F2A0C7226DF4290035BB84 /* Helpers */,
+				67F2A0C6226DF41F0035BB84 /* API */,
+				67F2A0C3226DF3D10035BB84 /* Storyboard */,
+				67F2A0C0226DF3680035BB84 /* Model */,
+				67F2A0BF226DF3570035BB84 /* View */,
+				67F2A0BE226DF34C0035BB84 /* Controller */,
 				67F2A0AC226DEF340035BB84 /* AppDelegate.swift */,
-				67F2A0AE226DEF340035BB84 /* ViewController.swift */,
-				67F2A0B0226DEF340035BB84 /* Main.storyboard */,
 				67F2A0B3226DEF350035BB84 /* Assets.xcassets */,
-				67F2A0B5226DEF350035BB84 /* LaunchScreen.storyboard */,
 				67F2A0B8226DEF350035BB84 /* Info.plist */,
 			);
 			path = WorkSafe;
+			sourceTree = "<group>";
+		};
+		67F2A0BE226DF34C0035BB84 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				67F2A0C1226DF3AE0035BB84 /* EquipmentController.swift */,
+				67BBD884226E447A0001915D /* AddFacilityController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		67F2A0BF226DF3570035BB84 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				67F2A0C4226DF4130035BB84 /* EquipmentCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		67F2A0C0226DF3680035BB84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				67F2A0CC226E0B3E0035BB84 /* WorkSafe.xcdatamodeld */,
+				67F2A0CF226E14B90035BB84 /* Facility.swift */,
+				67BBD882226E36410001915D /* Equipment.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		67F2A0C3226DF3D10035BB84 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				67F2A0B5226DEF350035BB84 /* LaunchScreen.storyboard */,
+				67F2A0B0226DEF340035BB84 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		67F2A0C6226DF41F0035BB84 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		67F2A0C7226DF4290035BB84 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				67F2A0C8226DF4580035BB84 /* SegueHandler.swift */,
+				67F2A0D1226E173F0035BB84 /* Managed.swift */,
+				67F2A0D3226E17CA0035BB84 /* NSManagedObjectContext+Extension.swift */,
+				67F2A0CA226DFF040035BB84 /* TableViewDataSource.swift */,
+				67F2A0D5226E19730035BB84 /* WorkSafeDataStack.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +213,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67F2A0AF226DEF340035BB84 /* ViewController.swift in Sources */,
+				67F2A0D6226E19730035BB84 /* WorkSafeDataStack.swift in Sources */,
+				67F2A0C9226DF4580035BB84 /* SegueHandler.swift in Sources */,
+				67BBD883226E36410001915D /* Equipment.swift in Sources */,
+				67F2A0CE226E0B3E0035BB84 /* WorkSafe.xcdatamodeld in Sources */,
+				67F2A0CB226DFF040035BB84 /* TableViewDataSource.swift in Sources */,
+				67F2A0C5226DF4130035BB84 /* EquipmentCell.swift in Sources */,
+				67F2A0C2226DF3AE0035BB84 /* EquipmentController.swift in Sources */,
+				67F2A0D2226E173F0035BB84 /* Managed.swift in Sources */,
+				67BBD885226E447A0001915D /* AddFacilityController.swift in Sources */,
+				67F2A0D0226E14B90035BB84 /* Facility.swift in Sources */,
+				67F2A0D4226E17CA0035BB84 /* NSManagedObjectContext+Extension.swift in Sources */,
 				67F2A0AD226DEF340035BB84 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +424,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		67F2A0CC226E0B3E0035BB84 /* WorkSafe.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				67F2A0CD226E0B3E0035BB84 /* WorkSafe.xcdatamodel */,
+			);
+			currentVersion = 67F2A0CD226E0B3E0035BB84 /* WorkSafe.xcdatamodel */;
+			path = WorkSafe.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 67F2A0A1226DEF340035BB84 /* Project object */;
 }
