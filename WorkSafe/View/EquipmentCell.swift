@@ -21,7 +21,8 @@ class EquipmentCell: UITableViewCell {
     
     func configure(for facility: Facility) {
        departmentLabel.text=facility.department
-       roomNumberLabel.text=facility.roomNumber
+       roomNumberLabel.text="Room " + facility.roomNumber
+       floorLevelLabel.text="Floor \(facility.floor)"
        facilityImageView.image=UIImage(named: "camera")
     }
     
