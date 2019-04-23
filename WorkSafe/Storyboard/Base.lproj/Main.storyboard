@@ -109,6 +109,7 @@
                                         <rect key="frame" x="0.0" y="279" width="335" height="275"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="9HB-qd-tGU"/>
                                             <constraint firstAttribute="height" constant="275" id="DJ9-Ry-EtU"/>
                                         </constraints>
                                         <prototypes>
@@ -121,11 +122,38 @@
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="9HB-qd-tGU"/>
+                                                <exclude reference="DJ9-Ry-EtU"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="9HB-qd-tGU"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="DJ9-Ry-EtU"/>
+                                            </mask>
+                                        </variation>
                                     </tableView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="f8b-0E-IBB" firstAttribute="top" secondItem="LYd-r4-IwV" secondAttribute="top" id="h5H-G3-WRN"/>
+                                    <constraint firstItem="s1w-tQ-tHg" firstAttribute="top" secondItem="f8b-0E-IBB" secondAttribute="bottom" id="nft-zs-JKs"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="nft-zs-JKs"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="nft-zs-JKs"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
