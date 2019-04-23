@@ -65,6 +65,20 @@ class TableViewDataSource<Delegate:TableViewCoreDataSourceDelegate>:NSObject,UIT
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            if let object=objectAtIndexPath(indexPath) as? NSManagedObject {
+                object.managedObjectContext?.performChanges(block: {
+                    object.managedObjectContext?.delete(object)
+                })
+            }
+        }
+    }
+    
     //MARK:- NSFetchedResultsControllerDeleagte
 
     
@@ -78,9 +92,11 @@ class TableViewDataSource<Delegate:TableViewCoreDataSourceDelegate>:NSObject,UIT
         case .insert:
             guard let indexPath = newIndexPath else { fatalError("Index path should be not nil") }
             tableView.insertRows(at: [indexPath], with: .fade)
+            print("Added")
         case .delete:
             guard let indexPath = indexPath else { fatalError("Index path should be not nil") }
             tableView.deleteRows(at: [indexPath], with: .fade)
+            print("Deleted")
         case .update:
             guard let indexPath = indexPath else { fatalError("Index path should be not nil") }
             let object = objectAtIndexPath(indexPath)

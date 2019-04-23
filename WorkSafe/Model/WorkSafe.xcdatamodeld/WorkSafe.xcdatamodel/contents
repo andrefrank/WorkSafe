@@ -19,7 +19,7 @@
         <relationship name="equipments" toMany="YES" deletionRule="Nullify" destinationEntity="Equipment" inverseName="facility" inverseEntity="Equipment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Facility" positionX="-63" positionY="-18" width="128" height="133"/>
         <element name="Equipment" positionX="-63" positionY="18" width="128" height="163"/>
+        <element name="Facility" positionX="-63" positionY="-18" width="128" height="133"/>
     </elements>
 </model>

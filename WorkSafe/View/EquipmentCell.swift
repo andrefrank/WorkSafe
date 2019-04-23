@@ -22,7 +22,8 @@ class EquipmentCell: UITableViewCell {
     func configure(for facility: Facility) {
        departmentLabel.text=facility.department
        roomNumberLabel.text=facility.roomNumber
-        
+       facilityImageView.image=UIImage(named: "camera")
     }
     
+
 }
