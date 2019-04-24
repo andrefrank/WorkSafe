@@ -12,7 +12,7 @@ import Photos
 import UIKit
 
 protocol CapturePhotoServiceDelegate: class {
-    func capturePhotoDidChangeAuthorizationStatus(authorized: Bool)
+    func capturePhotoDidChangeAuthorizationStatus(authorized: Bool, forType type:CapturePhotoService.CaptureType)
     func capturePhotoDidCapture(_ image: UIImage?)
 }
 
@@ -100,7 +100,7 @@ class CapturePhotoService: NSObject {
         if captureType == .Camera {
             AVCaptureDevice.requestAccess(for: AVMediaType.video) { authorized in
                 DispatchQueue.main.async {
-                    self.delegate.capturePhotoDidChangeAuthorizationStatus(authorized: authorized)
+                    self.delegate.capturePhotoDidChangeAuthorizationStatus(authorized: authorized, forType: .Camera)
                     guard authorized else { return }
                     self.setup()
                 }
@@ -108,7 +108,7 @@ class CapturePhotoService: NSObject {
         } else if captureType == .PhotoLibrary {
             PHPhotoLibrary.requestAuthorization { authorized in
                 DispatchQueue.main.async {
-                    self.delegate.capturePhotoDidChangeAuthorizationStatus(authorized: authorized == .authorized)
+                    self.delegate.capturePhotoDidChangeAuthorizationStatus(authorized: authorized == .authorized, forType: .PhotoLibrary)
                     guard authorized == .authorized else { return }
                     self.setup()
                 }

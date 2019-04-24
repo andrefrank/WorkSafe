@@ -23,11 +23,13 @@ class AddFacilityController: UITableViewController,CapturePhotoServiceDelegate {
     var facilitiy: Facility?
     var managedContext: NSManagedObjectContext!
     
+    
+    typealias ActionSheetHandler = (UIAlertAction)->Void
+    
     //MARK:-Private properties
-    var capturePhotoService:CapturePhotoService?
+    private var capturePhotoService:CapturePhotoService?
     
-    typealias ActionSheetSelectionHandler = (UIAlertAction) -> Void
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         loadFacilityDataToGUI()
@@ -56,12 +58,17 @@ class AddFacilityController: UITableViewController,CapturePhotoServiceDelegate {
         facilityImageView.image=image
     }
     
-    func capturePhotoDidChangeAuthorizationStatus(authorized: Bool) {
-        print(authorized)
+    func capturePhotoDidChangeAuthorizationStatus(authorized: Bool,forType type:CapturePhotoService.CaptureType) {
+        if type == .Camera{
+            print("Access has changed for camera")
+        }else{
+             print("Acces has changed for Photo Library")
+        }
+        
     }
     
     
-    func showImageSourceSelectionSheet(selectionPhotoLibrary: @escaping ActionSheetSelectionHandler, selectionCamera: @escaping ActionSheetSelectionHandler) {
+    func showImageSourceSelectionSheet(selectionPhotoLibrary: @escaping ActionSheetHandler, selectionCamera: @escaping ActionSheetHandler) {
         let actionSheet = UIAlertController(title: "Add Photo", message: "Use PhotoLibrary or camera", preferredStyle: .actionSheet)
         
         let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: selectionPhotoLibrary)
@@ -92,7 +99,7 @@ class AddFacilityController: UITableViewController,CapturePhotoServiceDelegate {
         } else {
             managedContext.performChanges { [weak self] in
                 guard let mySelf = self else { return }
-                _ = Facility.insert(into: mySelf.managedContext, department: "Production", photoURL: "test.jpg", roomNumber: "1.028", floor: 0)
+                _ = Facility.insert(into: mySelf.managedContext, department: self?.departmentTextField.text ?? "Department", photoURL: "test.jpg", roomNumber:self?.roomNumberTextField.text ?? "", floor: Int16(self?.floorLevelTextField.text ?? "0")!)
             }
         }
     }

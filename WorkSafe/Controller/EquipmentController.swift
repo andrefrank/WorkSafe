@@ -79,7 +79,7 @@ extension EquipmentController:UITableViewDelegate{
 extension EquipmentController{
     @IBAction func exitTo(segue:UIStoryboardSegue){
       print("Back from addFacility")
-       guard let vc=segue.source as? AddFacilityController else {fatalError("Wrong ViewController")}
+       guard let _=segue.source as? AddFacilityController else {fatalError("Wrong ViewController")}
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

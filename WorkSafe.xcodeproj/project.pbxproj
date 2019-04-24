@@ -10,12 +10,7 @@
 		67BBD883226E36410001915D /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BBD882226E36410001915D /* Equipment.swift */; };
 		67BBD885226E447A0001915D /* AddFacilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BBD884226E447A0001915D /* AddFacilityController.swift */; };
 		67DA5C11226FB50D005FB7C2 /* CapturePhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA5C10226FB50D005FB7C2 /* CapturePhotoService.swift */; };
-		67DA5C16226FCD20005FB7C2 /* Screenshot 2019-04-24 at 00.44.02.png in Resources */ = {isa = PBXBuildFile; fileRef = 67DA5C15226FCD20005FB7C2 /* Screenshot 2019-04-24 at 00.44.02.png */; };
-		67DA5C18226FCD24005FB7C2 /* Screenshot 2019-04-24 at 00.44.16.png in Resources */ = {isa = PBXBuildFile; fileRef = 67DA5C17226FCD24005FB7C2 /* Screenshot 2019-04-24 at 00.44.16.png */; };
-		67DA5C1A226FCD2A005FB7C2 /* Screenshot 2019-04-24 at 00.43.01.png in Resources */ = {isa = PBXBuildFile; fileRef = 67DA5C19226FCD2A005FB7C2 /* Screenshot 2019-04-24 at 00.43.01.png */; };
-		67DA5C1C226FCD31005FB7C2 /* Screenshot 2019-04-24 at 00.43.17.png in Resources */ = {isa = PBXBuildFile; fileRef = 67DA5C1B226FCD30005FB7C2 /* Screenshot 2019-04-24 at 00.43.17.png */; };
-		67DA5C1E226FCD36005FB7C2 /* Screenshot 2019-04-24 at 00.43.44.png in Resources */ = {isa = PBXBuildFile; fileRef = 67DA5C1D226FCD36005FB7C2 /* Screenshot 2019-04-24 at 00.43.44.png */; };
-		67DA5C20226FCD54005FB7C2 /* Screenshot 2019-04-24 at 00.44.32.png in Resources */ = {isa = PBXBuildFile; fileRef = 67DA5C1F226FCD54005FB7C2 /* Screenshot 2019-04-24 at 00.44.32.png */; };
+		67EA7F71227043250092E125 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EA7F70227043250092E125 /* UIImage+Extension.swift */; };
 		67F2A0AD226DEF340035BB84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0AC226DEF340035BB84 /* AppDelegate.swift */; };
 		67F2A0B2226DEF340035BB84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67F2A0B0226DEF340035BB84 /* Main.storyboard */; };
 		67F2A0B4226DEF350035BB84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67F2A0B3226DEF350035BB84 /* Assets.xcassets */; };
@@ -35,12 +30,7 @@
 		67BBD882226E36410001915D /* Equipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipment.swift; sourceTree = "<group>"; };
 		67BBD884226E447A0001915D /* AddFacilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFacilityController.swift; sourceTree = "<group>"; };
 		67DA5C10226FB50D005FB7C2 /* CapturePhotoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturePhotoService.swift; sourceTree = "<group>"; };
-		67DA5C15226FCD20005FB7C2 /* Screenshot 2019-04-24 at 00.44.02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2019-04-24 at 00.44.02.png"; sourceTree = "<group>"; };
-		67DA5C17226FCD24005FB7C2 /* Screenshot 2019-04-24 at 00.44.16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2019-04-24 at 00.44.16.png"; sourceTree = "<group>"; };
-		67DA5C19226FCD2A005FB7C2 /* Screenshot 2019-04-24 at 00.43.01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2019-04-24 at 00.43.01.png"; sourceTree = "<group>"; };
-		67DA5C1B226FCD30005FB7C2 /* Screenshot 2019-04-24 at 00.43.17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2019-04-24 at 00.43.17.png"; sourceTree = "<group>"; };
-		67DA5C1D226FCD36005FB7C2 /* Screenshot 2019-04-24 at 00.43.44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screenshot 2019-04-24 at 00.43.44.png"; path = "../../../../../../../Desktop/Screenshot 2019-04-24 at 00.43.44.png"; sourceTree = "<group>"; };
-		67DA5C1F226FCD54005FB7C2 /* Screenshot 2019-04-24 at 00.44.32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2019-04-24 at 00.44.32.png"; sourceTree = "<group>"; };
+		67EA7F70227043250092E125 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		67F2A0A9226DEF340035BB84 /* WorkSafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkSafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67F2A0AC226DEF340035BB84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67F2A0B1226DEF340035BB84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,14 +62,17 @@
 		67DA5C12226FCCE9005FB7C2 /* Current state images */ = {
 			isa = PBXGroup;
 			children = (
-				67DA5C17226FCD24005FB7C2 /* Screenshot 2019-04-24 at 00.44.16.png */,
-				67DA5C1D226FCD36005FB7C2 /* Screenshot 2019-04-24 at 00.43.44.png */,
-				67DA5C15226FCD20005FB7C2 /* Screenshot 2019-04-24 at 00.44.02.png */,
-				67DA5C19226FCD2A005FB7C2 /* Screenshot 2019-04-24 at 00.43.01.png */,
-				67DA5C1B226FCD30005FB7C2 /* Screenshot 2019-04-24 at 00.43.17.png */,
-				67DA5C1F226FCD54005FB7C2 /* Screenshot 2019-04-24 at 00.44.32.png */,
 			);
 			path = "Current state images";
+			sourceTree = "<group>";
+		};
+		67EA7F72227043380092E125 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				67F2A0D3226E17CA0035BB84 /* NSManagedObjectContext+Extension.swift */,
+				67EA7F70227043250092E125 /* UIImage+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		67F2A0A0226DEF340035BB84 = {
@@ -101,6 +94,7 @@
 		67F2A0AB226DEF340035BB84 /* WorkSafe */ = {
 			isa = PBXGroup;
 			children = (
+				67EA7F72227043380092E125 /* Extension */,
 				67DA5C12226FCCE9005FB7C2 /* Current state images */,
 				67F2A0C7226DF4290035BB84 /* Helpers */,
 				67F2A0C6226DF41F0035BB84 /* API */,
@@ -164,7 +158,6 @@
 			children = (
 				67F2A0C8226DF4580035BB84 /* SegueHandler.swift */,
 				67F2A0D1226E173F0035BB84 /* Managed.swift */,
-				67F2A0D3226E17CA0035BB84 /* NSManagedObjectContext+Extension.swift */,
 				67F2A0CA226DFF040035BB84 /* TableViewDataSource.swift */,
 				67F2A0D5226E19730035BB84 /* WorkSafeDataStack.swift */,
 			);
@@ -229,14 +222,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67DA5C20226FCD54005FB7C2 /* Screenshot 2019-04-24 at 00.44.32.png in Resources */,
-				67DA5C18226FCD24005FB7C2 /* Screenshot 2019-04-24 at 00.44.16.png in Resources */,
-				67DA5C16226FCD20005FB7C2 /* Screenshot 2019-04-24 at 00.44.02.png in Resources */,
 				67F2A0B7226DEF350035BB84 /* LaunchScreen.storyboard in Resources */,
-				67DA5C1E226FCD36005FB7C2 /* Screenshot 2019-04-24 at 00.43.44.png in Resources */,
 				67F2A0B4226DEF350035BB84 /* Assets.xcassets in Resources */,
-				67DA5C1A226FCD2A005FB7C2 /* Screenshot 2019-04-24 at 00.43.01.png in Resources */,
-				67DA5C1C226FCD31005FB7C2 /* Screenshot 2019-04-24 at 00.43.17.png in Resources */,
 				67F2A0B2226DEF340035BB84 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67F2A0D6226E19730035BB84 /* WorkSafeDataStack.swift in Sources */,
+				67EA7F71227043250092E125 /* UIImage+Extension.swift in Sources */,
 				67F2A0C9226DF4580035BB84 /* SegueHandler.swift in Sources */,
 				67BBD883226E36410001915D /* Equipment.swift in Sources */,
 				67DA5C11226FB50D005FB7C2 /* CapturePhotoService.swift in Sources */,

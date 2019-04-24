@@ -7,10 +7,10 @@
 //
 
 import CoreData
+import UIKit
 
 
 final class Facility:NSManagedObject{
-    
     @NSManaged  var department:String
     @NSManaged  var roomNumber:String
     @NSManaged  fileprivate(set) var plant:Int16
