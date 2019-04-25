@@ -50,6 +50,21 @@ extension FileManager {
         return nil
     }
     
+    func deleteFileInUserDirectory(fileName:String)->Bool{
+        let filePath = FileManager.documentsDirectory().appendingPathComponent(fileName)
+        if FileManager.default.fileExists(atPath: filePath){
+            do{
+                try FileManager.default.removeItem(atPath: filePath)
+                return true
+            }catch let error{
+                print(error.localizedDescription)
+                return false
+            }
+        }
+        return false
+    }
+    
+    
     func createFileInUserDirectory(pathComponent: String, fileName: String, data: Data, useEnumeratedFileName: Bool = false) -> String? {
        
         //Create the user directory first if it doesn't exist

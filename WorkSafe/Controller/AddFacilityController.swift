@@ -18,13 +18,15 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
     @IBOutlet var facilityImageView: UIImageView!
     
     // MARK: - Public properties
+    
     var facilitiy: Facility?
     var managedContext: NSManagedObjectContext!
-    var imageCompletionHandler:((UIImage)->Void)?
+    var imageCompletionHandler: ((UIImage) -> Void)?
     
     typealias ActionSheetHandler = (UIAlertAction) -> Void
     
     // MARK: -Private properties
+    
     private var capturePhotoService: CapturePhotoService?
     
     override func viewDidLoad() {
@@ -83,48 +85,52 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
         departmentTextField.text = fac.department
         floorLevelTextField.text = "\(fac.floor)"
         
-        if let photoURL = fac.photoURL{
+        if let photoURL = fac.photoURL {
             facilityImageView.image = UIImage.loadImageFromUserDirectory(photoURL: photoURL)
-        }else{
-            facilityImageView.image=UIImage(named: "camera")
+        } else {
+            facilityImageView.image = UIImage(named: "camera")
         }
     }
     
-    private func changeFacility(fac:Facility){
+    private func changeFacility(fac: Facility) {
         managedContext.performChanges { [unowned self] in
             fac.department = self.departmentTextField.text ?? "Department"
             fac.floor = Int16(self.floorLevelTextField.text ?? "0")!
             fac.roomNumber = self.roomNumberTextField.text ?? ""
             
-            //Only save a new image if the user has an image selected and the department is valid
-            guard let image=self.facilityImageView.image, let department=self.departmentTextField.text else {return}
+            // Only save a new image if the user has an image selected and the department is valid
+            guard let image = self.facilityImageView.image, let department = self.departmentTextField.text else { return }
             
-            fac.photoURL=image.saveToUserDirectory(pathComponent: department, filename:"Test.jpg")
-            //print(fac.photoURL)
+            if let photoURL = fac.photoURL{
+                FileManager.default.deleteFileInUserDirectory(fileName: photoURL)
+            }
+            
+            fac.photoURL = image.saveToUserDirectory(pathComponent: department, filename: "Test.jpg")
+            // print(fac.photoURL)
         }
     }
     
-    private func addFacility(){
+    private func addFacility() {
         managedContext.performChanges { [weak self] in
             
-            //Only save a new image if the user has an image selected and the department is valid
-            var photoURL:String?
+            // Only save a new image if the user has an image selected and the department is valid
+            var photoURL: String?
             
-            if let image=self?.facilityImageView.image, let department=self?.departmentTextField.text {
-                 photoURL=image.saveToUserDirectory(pathComponent:department, filename:"Test.jpg")
-                //print(photoURL)
+            if let image = self?.facilityImageView.image, let department = self?.departmentTextField.text {
+                photoURL = image.saveToUserDirectory(pathComponent: department, filename: "Test.jpg")
+                // print(photoURL)
             }
             
-            guard let mySelf=self else {return}
-            _ = Facility.insert(into: mySelf.managedContext, department: self?.departmentTextField.text ?? "Department", photoURL:photoURL, roomNumber: self?.roomNumberTextField.text ?? "", floor: Int16(self?.floorLevelTextField.text ?? "0")!)
+            guard let mySelf = self else { return }
+            _ = Facility.insert(into: mySelf.managedContext, department: self?.departmentTextField.text ?? "Department", photoURL: photoURL, roomNumber: self?.roomNumberTextField.text ?? "", floor: Int16(self?.floorLevelTextField.text ?? "0")!)
         }
     }
     
     private func saveGUIToFacility() {
         if let fac = self.facilitiy {
             changeFacility(fac: fac)
-        }else {
-           addFacility()
+        } else {
+            addFacility()
         }
     }
     
