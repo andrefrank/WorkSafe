@@ -11,7 +11,9 @@ import UIKit
 extension UIImage {
     func saveToUserDirectory(pathComponent:String, filename: String)->String?{
         if let data = self.jpegData(compressionQuality: 1.0) {
-            return FileManager.default.createFileInUserDirectory(pathComponent: pathComponent, fileName: filename, data: data)
+           // return FileManager.default.createFileInUserDirectory(pathComponent: pathComponent, fileName: filename, data: data)
+            
+            return FileManager.default.createFileInUserDirectory(pathComponent: pathComponent, fileName: filename, data: data, useEnumeratedFileName: true)
         }
         return nil
     }

@@ -13,20 +13,18 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
     // MARK: - IBOutlets
     
     @IBOutlet var departmentTextField: UITextField!
-    
     @IBOutlet var floorLevelTextField: UITextField!
     @IBOutlet var roomNumberTextField: UITextField!
     @IBOutlet var facilityImageView: UIImageView!
     
     // MARK: - Public properties
-    
     var facilitiy: Facility?
     var managedContext: NSManagedObjectContext!
+    var imageCompletionHandler:((UIImage)->Void)?
     
     typealias ActionSheetHandler = (UIAlertAction) -> Void
     
     // MARK: -Private properties
-    
     private var capturePhotoService: CapturePhotoService?
     
     override func viewDidLoad() {
@@ -102,6 +100,7 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
             guard let image=self.facilityImageView.image, let department=self.departmentTextField.text else {return}
             
             fac.photoURL=image.saveToUserDirectory(pathComponent: department, filename:"Test.jpg")
+            //print(fac.photoURL)
         }
     }
     
@@ -109,11 +108,11 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
         managedContext.performChanges { [weak self] in
             
             //Only save a new image if the user has an image selected and the department is valid
-            
             var photoURL:String?
             
             if let image=self?.facilityImageView.image, let department=self?.departmentTextField.text {
                  photoURL=image.saveToUserDirectory(pathComponent:department, filename:"Test.jpg")
+                //print(photoURL)
             }
             
             guard let mySelf=self else {return}

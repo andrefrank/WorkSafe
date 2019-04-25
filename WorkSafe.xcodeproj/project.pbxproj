@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		67BBD883226E36410001915D /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BBD882226E36410001915D /* Equipment.swift */; };
 		67BBD885226E447A0001915D /* AddFacilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BBD884226E447A0001915D /* AddFacilityController.swift */; };
+		67CDE9A82272483E00D1E1BA /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CDE9A72272483E00D1E1BA /* String+Extension.swift */; };
 		67DA5C11226FB50D005FB7C2 /* CapturePhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA5C10226FB50D005FB7C2 /* CapturePhotoService.swift */; };
 		67E977F02270DE3A002A356C /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E977EF2270DE3A002A356C /* FileManager+Extension.swift */; };
 		67EA7F71227043250092E125 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EA7F70227043250092E125 /* UIImage+Extension.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		67BBD882226E36410001915D /* Equipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipment.swift; sourceTree = "<group>"; };
 		67BBD884226E447A0001915D /* AddFacilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFacilityController.swift; sourceTree = "<group>"; };
+		67CDE9A72272483E00D1E1BA /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		67DA5C10226FB50D005FB7C2 /* CapturePhotoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturePhotoService.swift; sourceTree = "<group>"; };
 		67E977EF2270DE3A002A356C /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		67EA7F70227043250092E125 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				67F2A0D3226E17CA0035BB84 /* NSManagedObjectContext+Extension.swift */,
+				67CDE9A72272483E00D1E1BA /* String+Extension.swift */,
 				67EA7F70227043250092E125 /* UIImage+Extension.swift */,
 				67E977EF2270DE3A002A356C /* FileManager+Extension.swift */,
 			);
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67CDE9A82272483E00D1E1BA /* String+Extension.swift in Sources */,
 				67F2A0D6226E19730035BB84 /* WorkSafeDataStack.swift in Sources */,
 				67EA7F71227043250092E125 /* UIImage+Extension.swift in Sources */,
 				67F2A0C9226DF4580035BB84 /* SegueHandler.swift in Sources */,

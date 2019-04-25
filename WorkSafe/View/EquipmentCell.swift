@@ -23,8 +23,11 @@ class EquipmentCell: UITableViewCell {
        departmentLabel.text=facility.department
        roomNumberLabel.text="Room " + facility.roomNumber
        floorLevelLabel.text="Floor \(facility.floor)"
-       facilityImageView.image=UIImage(named: "camera")
+       
+        if let photoURL = facility.photoURL{
+            facilityImageView.image = UIImage.loadImageFromUserDirectory(photoURL: photoURL)
+        }else{
+            facilityImageView.image=UIImage(named: "camera")
+        }
     }
-    
-
 }
