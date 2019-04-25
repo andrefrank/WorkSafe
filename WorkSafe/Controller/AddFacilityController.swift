@@ -33,6 +33,11 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
         super.viewDidLoad()
         loadFacilityDataToGUI()
         setupGesture()
+        
+        //Used for dismissing the keyboard after editing
+        departmentTextField.delegate=self
+        floorLevelTextField.delegate=self
+        roomNumberTextField.delegate=self
     }
     
     private func setupGesture() {
@@ -102,7 +107,7 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
             guard let image = self.facilityImageView.image, let department = self.departmentTextField.text else { return }
             
             if let photoURL = fac.photoURL{
-                FileManager.default.deleteFileInUserDirectory(fileName: photoURL)
+                _=FileManager.default.deleteFileInUserDirectory(fileName: photoURL)
             }
             
             fac.photoURL = image.saveToUserDirectory(pathComponent: department, filename: "Test.jpg")
@@ -137,4 +142,13 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
     @IBAction func saveBarButtonPressed(_ sender: Any) {
         saveGUIToFacility()
     }
+}
+
+extension AddFacilityController:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
 }
