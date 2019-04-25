@@ -9,29 +9,37 @@
 import UIKit
 
 extension UIImage {
-    
-    func saveToDocuments(pathComponent:String,filename:String) {
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = documentsDirectory.appendingPathComponent(pathComponent+"/"+filename)
+    func saveToUserDirectory(pathComponent:String, filename: String)->String?{
         if let data = self.jpegData(compressionQuality: 1.0) {
-            do {
-                try data.write(to: fileURL)
-            } catch {
-                print("error saving file to documents:", error)
-            }
+            return FileManager.default.createFileInUserDirectory(pathComponent: pathComponent, fileName: filename, data: data)
         }
+        return nil
     }
     
-}
+    
 
-func loadImageFromDocumentDirectory(pathComponent:String,nameOfImage : String) -> UIImage {
-    let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
-    let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
-    let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
-    if let dirPath = paths.first{
-        let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent(pathComponent+"/"+nameOfImage)
-        guard let image = UIImage(contentsOfFile: imageURL.path) else { return  UIImage.init(named: "fulcrumPlaceholder")!}
-        return image
+    static func loadImageFromUserDirectory(imageName: String,pathComponent path:String ) -> UIImage? {
+        
+        let filePath=FileManager.documentsDirectory().appendingPathComponent(path)+"/"+imageName
+    
+        if FileManager.default.fileExists(atPath: filePath){
+            guard let data=FileManager.default.contents(atPath: filePath) else {return nil}
+            return UIImage(data: data)
+        }
+        
+        return nil
     }
-    return UIImage.init(named: "imageDefaultPlaceholder")!
+    
+    static func loadImageFromUserDirectory(photoURL:String ) -> UIImage? {
+        
+        let filePath=FileManager.documentsDirectory().appendingPathComponent(photoURL)
+        if FileManager.default.fileExists(atPath: filePath){
+            guard let data=FileManager.default.contents(atPath: filePath) else {return nil}
+            return UIImage(data: data)
+        }
+        
+        return nil
+    }
+    
+    
 }

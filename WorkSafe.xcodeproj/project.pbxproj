@@ -10,6 +10,7 @@
 		67BBD883226E36410001915D /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BBD882226E36410001915D /* Equipment.swift */; };
 		67BBD885226E447A0001915D /* AddFacilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BBD884226E447A0001915D /* AddFacilityController.swift */; };
 		67DA5C11226FB50D005FB7C2 /* CapturePhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA5C10226FB50D005FB7C2 /* CapturePhotoService.swift */; };
+		67E977F02270DE3A002A356C /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E977EF2270DE3A002A356C /* FileManager+Extension.swift */; };
 		67EA7F71227043250092E125 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EA7F70227043250092E125 /* UIImage+Extension.swift */; };
 		67F2A0AD226DEF340035BB84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0AC226DEF340035BB84 /* AppDelegate.swift */; };
 		67F2A0B2226DEF340035BB84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67F2A0B0226DEF340035BB84 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		67BBD882226E36410001915D /* Equipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipment.swift; sourceTree = "<group>"; };
 		67BBD884226E447A0001915D /* AddFacilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFacilityController.swift; sourceTree = "<group>"; };
 		67DA5C10226FB50D005FB7C2 /* CapturePhotoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturePhotoService.swift; sourceTree = "<group>"; };
+		67E977EF2270DE3A002A356C /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		67EA7F70227043250092E125 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		67F2A0A9226DEF340035BB84 /* WorkSafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkSafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67F2A0AC226DEF340035BB84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			children = (
 				67F2A0D3226E17CA0035BB84 /* NSManagedObjectContext+Extension.swift */,
 				67EA7F70227043250092E125 /* UIImage+Extension.swift */,
+				67E977EF2270DE3A002A356C /* FileManager+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				67F2A0C2226DF3AE0035BB84 /* EquipmentController.swift in Sources */,
 				67F2A0D2226E173F0035BB84 /* Managed.swift in Sources */,
 				67BBD885226E447A0001915D /* AddFacilityController.swift in Sources */,
+				67E977F02270DE3A002A356C /* FileManager+Extension.swift in Sources */,
 				67F2A0D0226E14B90035BB84 /* Facility.swift in Sources */,
 				67F2A0D4226E17CA0035BB84 /* NSManagedObjectContext+Extension.swift in Sources */,
 				67F2A0AD226DEF340035BB84 /* AppDelegate.swift in Sources */,

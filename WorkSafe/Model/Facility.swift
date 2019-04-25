@@ -15,12 +15,12 @@ final class Facility:NSManagedObject{
     @NSManaged  var roomNumber:String
     @NSManaged  fileprivate(set) var plant:Int16
     @NSManaged  var floor:Int16
-    @NSManaged  var photoURL:String
+    @NSManaged  var photoURL:String?
     
     //Relationship toMany
     @NSManaged fileprivate(set) var equipments: Set<Equipment>
     
-    public static func insert(into context: NSManagedObjectContext,department:String, photoURL:String, roomNumber:String, plant:Int16=5,floor:Int16) -> Facility {
+    public static func insert(into context: NSManagedObjectContext,department:String, photoURL:String?, roomNumber:String, plant:Int16=5,floor:Int16) -> Facility {
        
         let fac: Facility = context.insertObject()
         fac.department=department
