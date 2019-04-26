@@ -26,20 +26,30 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
     typealias ActionSheetHandler = (UIAlertAction) -> Void
     
     // MARK: -Private properties
-    
     private var capturePhotoService: CapturePhotoService?
     
+    private var facilityImage:UIImage?{
+        didSet{
+            facilityImageView.image = facilityImage
+            imageHasChanged=true
+        }
+    }
+    
+    private var imageHasChanged:Bool=false
+    
+    // MARK: - Life cycle of the AddFacilityController
     override func viewDidLoad() {
         super.viewDidLoad()
         loadFacilityDataToGUI()
         setupGesture()
         
-        //Used for dismissing the keyboard after editing
-        departmentTextField.delegate=self
-        floorLevelTextField.delegate=self
-        roomNumberTextField.delegate=self
+        // Used for dismissing the keyboard after editing
+        departmentTextField.delegate = self
+        floorLevelTextField.delegate = self
+        roomNumberTextField.delegate = self
     }
     
+    //MARK: - Gesture Recognizer and Handling
     private func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(gesture:)))
         facilityImageView.addGestureRecognizer(tapGesture)
@@ -58,18 +68,6 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
         }
     }
     
-    func capturePhotoDidCapture(_ image: UIImage?) {
-        facilityImageView.image = image
-    }
-    
-    func capturePhotoDidChangeAuthorizationStatus(authorized: Bool, forType type: CapturePhotoService.CaptureType) {
-        if type == .Camera {
-            print("Access has changed for camera")
-        } else {
-            print("Acces has changed for Photo Library")
-        }
-    }
-    
     func showImageSourceSelectionSheet(selectionPhotoLibrary: @escaping ActionSheetHandler, selectionCamera: @escaping ActionSheetHandler) {
         let actionSheet = UIAlertController(title: "Add Photo", message: "Use PhotoLibrary or camera", preferredStyle: .actionSheet)
         
@@ -84,6 +82,20 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
         present(actionSheet, animated: true, completion: nil)
     }
     
+    //MARK:- Photo Capture
+    func capturePhotoDidCapture(_ image: UIImage?) {
+        facilityImage=image
+    }
+    
+    func capturePhotoDidChangeAuthorizationStatus(authorized: Bool, forType type: CapturePhotoService.CaptureType) {
+        if type == .Camera {
+            print("Access has changed for camera")
+        } else {
+            print("Acces has changed for Photo Library")
+        }
+    }
+    
+    //MARK:- Input and output data
     private func loadFacilityDataToGUI() {
         guard let fac = facilitiy else { return }
         roomNumberTextField.text = fac.roomNumber
@@ -97,6 +109,15 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
         }
     }
     
+    private func saveGUIToFacility() {
+        if let fac = self.facilitiy {
+            changeFacility(fac: fac)
+        } else {
+            addFacility()
+        }
+    }
+    
+    
     private func changeFacility(fac: Facility) {
         managedContext.performChanges { [unowned self] in
             fac.department = self.departmentTextField.text ?? "Department"
@@ -106,12 +127,14 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
             // Only save a new image if the user has an image selected and the department is valid
             guard let image = self.facilityImageView.image, let department = self.departmentTextField.text else { return }
             
-            if let photoURL = fac.photoURL{
-                _=FileManager.default.deleteFileInUserDirectory(fileName: photoURL)
+            //Replace image
+            if let photoURL = fac.photoURL {
+                print(NSHomeDirectory())
+                _ = FileManager.default.deleteFileInUserDirectory(fileName: photoURL)
             }
             
             fac.photoURL = image.saveToUserDirectory(pathComponent: department, filename: "Test.jpg")
-            // print(fac.photoURL)
+            
         }
     }
     
@@ -123,7 +146,6 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
             
             if let image = self?.facilityImageView.image, let department = self?.departmentTextField.text {
                 photoURL = image.saveToUserDirectory(pathComponent: department, filename: "Test.jpg")
-                // print(photoURL)
             }
             
             guard let mySelf = self else { return }
@@ -131,24 +153,26 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
         }
     }
     
-    private func saveGUIToFacility() {
-        if let fac = self.facilitiy {
-            changeFacility(fac: fac)
-        } else {
-            addFacility()
-        }
-    }
     
+    //MARK:- Actions
     @IBAction func saveBarButtonPressed(_ sender: Any) {
         saveGUIToFacility()
     }
 }
 
-extension AddFacilityController:UITextFieldDelegate{
+
+
+//MARK: - TextField Delegate & Responder handling
+extension AddFacilityController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+        if let innerStackView = textField.superview,
+            let outerStackView = innerStackView.superview,
+            let nextTextField = outerStackView.viewWithTag(textField.tag + 1) {
+            nextTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+            return true
+        }
+        return false
     }
-    
-    
 }

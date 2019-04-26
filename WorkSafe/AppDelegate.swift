@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         createWorkSafeContainer { [unowned self] (container) in
             self.workSafeDataContainer=container
-            print("Core data stack initialized...")
             
             //Find specific controller in viewcontroller chain
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

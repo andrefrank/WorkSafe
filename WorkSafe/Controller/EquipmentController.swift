@@ -12,17 +12,20 @@ import CoreData
 
 class EquipmentController: UIViewController,SegueHandler {
    
+    @IBOutlet weak var equipmentsearchBar: UISearchBar!
     
-
+    //MARK:-IBOutlets
     @IBOutlet weak var equipmentTableView: UITableView!
-    @IBOutlet weak var issueTableView: UITableView!
     
+    //MARK: - Segues
     enum SegueIdentifier:String{
        case showEquipmentDetail="showEquipmentDetail"
        case addEquipmentDetail="addEquipmentDetail"
        case showIssueDetail="showIssueDetail"
+       case showTaskSelection="showTaskSelection"
     }
     
+    //MARK:- Constants
     enum CellIdentifier:String{
         case equipmentCell
         case issueCell
@@ -31,12 +34,13 @@ class EquipmentController: UIViewController,SegueHandler {
     var managedObjectContext: NSManagedObjectContext!
     
     private var equipmentDataSource:TableViewDataSource<EquipmentController>!
-    private var issueDataSource:TableViewDataSource<EquipmentController>?
     
     
+    //MARK:- Life cycle EquipmentController
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCoreDataTableView()
+        equipmentsearchBar.delegate=self
     }
     
     func setupCoreDataTableView(){
@@ -65,21 +69,23 @@ extension EquipmentController:TableViewCoreDataSourceDelegate{
 //MARK:-TableView Delegate
 extension EquipmentController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 90
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: SegueIdentifier.showTaskSelection.rawValue, sender: self)
+        }
     }
 
 }
 
 
-//MARK:- Navigation
+//MARK:- Navigation and Segue handling
 extension EquipmentController{
     @IBAction func exitTo(segue:UIStoryboardSegue){
-      print("Back from addFacility")
-       guard let _=segue.source as? AddFacilityController else {fatalError("Wrong ViewController")}
+      print("Back from other Controller")
+       //guard let _=segue.source as? AddFacilityController else {fatalError("Wrong ViewController")}
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -96,7 +102,10 @@ extension EquipmentController{
             
             vc.managedContext=managedObjectContext
         case .showIssueDetail:
-            print("")
+            print("Show Issue Controller")
+            
+        case .showTaskSelection:
+            print("Show Task selection controller")
             
         }
         
