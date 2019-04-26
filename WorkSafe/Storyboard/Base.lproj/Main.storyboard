@@ -40,9 +40,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Gwc-qk-AfM">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Search..." showsBookmarkButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJU-AZ-jj5">
+                                    <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Search..." scopeBarBackgroundImage="home" translatesAutoresizingMaskIntoConstraints="NO" id="IJU-AZ-jj5">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="search" textContentType="name"/>
+                                        <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="search" smartInsertDeleteType="yes" smartQuotesType="yes" textContentType="name"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
                                             <string>Title</string>
