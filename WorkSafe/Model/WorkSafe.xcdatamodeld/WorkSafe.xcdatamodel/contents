@@ -16,10 +16,11 @@
         <attribute name="photoURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="plant" attributeType="Integer 16" minValueString="1" maxValueString="5" defaultValueString="5" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="roomNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userDefinedName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="equipments" toMany="YES" deletionRule="Nullify" destinationEntity="Equipment" inverseName="facility" inverseEntity="Equipment" syncable="YES"/>
     </entity>
     <elements>
         <element name="Equipment" positionX="-63" positionY="18" width="128" height="163"/>
-        <element name="Facility" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Facility" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>

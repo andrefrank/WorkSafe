@@ -17,6 +17,7 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
     @IBOutlet var roomNumberTextField: UITextField!
     @IBOutlet var facilityImageView: UIImageView!
     
+    @IBOutlet weak var userDefinedNameTextField: UITextField!
     // MARK: - Public properties
     
     var facilitiy: Facility?
@@ -47,6 +48,7 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
         departmentTextField.delegate = self
         floorLevelTextField.delegate = self
         roomNumberTextField.delegate = self
+        userDefinedNameTextField.delegate = self
     }
     
     //MARK: - Gesture Recognizer and Handling
@@ -101,6 +103,7 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
         roomNumberTextField.text = fac.roomNumber
         departmentTextField.text = fac.department
         floorLevelTextField.text = "\(fac.floor)"
+        userDefinedNameTextField.text = fac.userDefinedName
         
         if let photoURL = fac.photoURL,!photoURL.isEmpty {
             facilityImageView.image = UIImage.loadImageFromUserDirectory(photoURL: photoURL)
@@ -123,6 +126,7 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
             fac.department = self.departmentTextField.text ?? "Department"
             fac.floor = Int16(self.floorLevelTextField.text ?? "0")!
             fac.roomNumber = self.roomNumberTextField.text ?? ""
+            fac.userDefinedName = self.userDefinedNameTextField.text ?? ""
             
             // Only save a new image if the user has an image selected and the department is valid
             guard let image = self.facilityImageView.image, let department = self.departmentTextField.text else { return }
@@ -149,7 +153,7 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
             }
             
             guard let mySelf = self else { return }
-            _ = Facility.insert(into: mySelf.managedContext, department: self?.departmentTextField.text ?? "Department", photoURL: photoURL, roomNumber: self?.roomNumberTextField.text ?? "", floor: Int16(self?.floorLevelTextField.text ?? "0")!)
+            _ = Facility.insert(into: mySelf.managedContext, department: self?.departmentTextField.text ?? "Department", photoURL: photoURL, roomNumber: self?.roomNumberTextField.text ?? "", floor: Int16(self?.floorLevelTextField.text ?? "0")!,userDefinedName:self?.userDefinedNameTextField.text ?? "")
         }
     }
     

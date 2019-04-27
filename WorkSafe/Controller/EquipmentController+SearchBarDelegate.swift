@@ -45,7 +45,7 @@ extension EquipmentController:UISearchBarDelegate{
     
     private func executeSearch(withText text:String){
         if !text.isEmpty{
-            let predicate = NSPredicate(format:" (department CONTAINS[c] %@) OR (roomNumber CONTAINS[c] %@)",text,text)
+            let predicate = NSPredicate(format:" (department CONTAINS[c] %@) OR (roomNumber CONTAINS[c]  %@) OR userDefinedName CONTAINS[c] %@",text,text,text)
             let filterRequest = Facility.sortedFetchRequest(with: predicate)
             equipmentDataSource.filter(request: filterRequest)
         }

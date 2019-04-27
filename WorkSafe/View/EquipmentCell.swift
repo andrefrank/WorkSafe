@@ -12,6 +12,7 @@ class EquipmentCell: UITableViewCell {
 
     @IBOutlet weak var facilityImageView: UIImageView!
     
+    @IBOutlet weak var userDefinedNameLabel: UILabel!
     @IBOutlet weak var departmentLabel: UILabel!
     
     @IBOutlet weak var roomNumberLabel: UILabel!
@@ -23,6 +24,7 @@ class EquipmentCell: UITableViewCell {
        departmentLabel.text=facility.department
        roomNumberLabel.text="Room " + facility.roomNumber
        floorLevelLabel.text="Floor \(facility.floor)"
+       userDefinedNameLabel.text=facility.userDefinedName
        
         if let photoURL = facility.photoURL, !photoURL.isEmpty{
             facilityImageView.image = UIImage.loadImageFromUserDirectory(photoURL: photoURL)
