@@ -10,19 +10,19 @@ import UIKit
 import CoreData
 
 
-class EquipmentController: UIViewController,SegueHandler {
+class ListEquipmentController: UIViewController,SegueHandler {
    
-    @IBOutlet weak var equipmentsearchBar: UISearchBar!
+    
     
     //MARK:-IBOutlets
     @IBOutlet weak var equipmentTableView: UITableView!
+    @IBOutlet weak var equipmentsearchBar: UISearchBar!
     
     //MARK: - Segues
     enum SegueIdentifier:String{
        case showEquipmentDetail="showEquipmentDetail"
-       case addEquipmentDetail="addEquipmentDetail"
-       case showIssueDetail="showIssueDetail"
        case showTaskSelection="showTaskSelection"
+       case showIssueController="showIssueController"
     }
     
     //MARK:- Constants
@@ -34,7 +34,7 @@ class EquipmentController: UIViewController,SegueHandler {
     var searchTask:DispatchWorkItem?
     
     var managedObjectContext: NSManagedObjectContext!
-    var equipmentDataSource:TableViewDataSource<EquipmentController>!
+    var equipmentDataSource:TableViewDataSource<ListEquipmentController>!
     
     
     //MARK:- Life cycle EquipmentController
@@ -61,14 +61,14 @@ class EquipmentController: UIViewController,SegueHandler {
 
 
 //MARK:-TableViewDataSource
-extension EquipmentController:TableViewCoreDataSourceDelegate{
+extension ListEquipmentController:TableViewCoreDataSourceDelegate{
     func configure(cell: EquipmentCell, withObject object: Facility) {
         cell.configure(for: object)
     }
 }
 
 //MARK:-TableView Delegate
-extension EquipmentController:UITableViewDelegate{
+extension ListEquipmentController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
@@ -82,8 +82,16 @@ extension EquipmentController:UITableViewDelegate{
 }
 
 
+extension ListEquipmentController{
+    //MARK:- Actions
+    @IBAction func addNewFacility(_ sender:Any?){
+        performSegue(withIdentifier: SegueIdentifier.showEquipmentDetail)
+    }
+}
+
+
 //MARK:- Navigation and Segue handling
-extension EquipmentController{
+extension ListEquipmentController{
     @IBAction func exitTo(segue:UIStoryboardSegue){
       print("Back from other Controller")
        //guard let _=segue.source as? AddFacilityController else {fatalError("Wrong ViewController")}
@@ -94,19 +102,23 @@ extension EquipmentController{
         case .showEquipmentDetail:
             guard let navVC=segue.destination as? UINavigationController, let vc=navVC.viewControllers.first as? AddFacilityController else {fatalError("Wrong ViewController")}
               vc.managedContext=managedObjectContext
-            
-            guard let indexPath=equipmentTableView.indexPath(for: sender as! UITableViewCell) else {return}
-            vc.facilitiy=equipmentDataSource.objectAtIndexPath(indexPath)
-            
-        case .addEquipmentDetail:
-            guard let navVC=segue.destination as? UINavigationController, let vc=navVC.viewControllers.first as? AddFacilityController else {fatalError("Wrong ViewController")}
-            
-            vc.managedContext=managedObjectContext
-        case .showIssueDetail:
-            print("Show Issue Controller")
-            
+            //Check if the Segue is triggered from selecting a row in the tableView or if it is triggered from add Bar Button
+            if let tableViewCell=sender as? UITableViewCell,let  indexPath=equipmentTableView.indexPath(for: tableViewCell){
+                vc.facilitiy=equipmentDataSource.objectAtIndexPath(indexPath)
+            }else{
+                vc.facilitiy=nil
+            }
+        case .showIssueController:
+            print("Ok")
         case .showTaskSelection:
-            print("Show Task selection controller")
+            guard let vc=segue.destination as? TaskSelectionController else {fatalError("Wrong ViewController")}
+            vc.dismissHandler={
+                switch $0{
+                case .Check,.Activity,.Assign,.Information,.Time,.Issue:
+                    self.performSegue(withIdentifier: SegueIdentifier.showIssueController, sender: nil)
+                }
+                
+            }
             
         }
         

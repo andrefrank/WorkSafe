@@ -11,16 +11,16 @@
 		67BBD885226E447A0001915D /* AddFacilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BBD884226E447A0001915D /* AddFacilityController.swift */; };
 		67CDE9A82272483E00D1E1BA /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CDE9A72272483E00D1E1BA /* String+Extension.swift */; };
 		67DA5C11226FB50D005FB7C2 /* CapturePhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA5C10226FB50D005FB7C2 /* CapturePhotoService.swift */; };
-		67DDCE8B2273A24E009A7086 /* EquipmentController+SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDCE8A2273A24E009A7086 /* EquipmentController+SearchBarDelegate.swift */; };
+		67DDCE8B2273A24E009A7086 /* ListEquipmentController+SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDCE8A2273A24E009A7086 /* ListEquipmentController+SearchBarDelegate.swift */; };
+		67DE3FD622746EA400F789B5 /* TaskSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DE3FD522746EA400F789B5 /* TaskSelectionController.swift */; };
 		67E977F02270DE3A002A356C /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E977EF2270DE3A002A356C /* FileManager+Extension.swift */; };
 		67EA7F71227043250092E125 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EA7F70227043250092E125 /* UIImage+Extension.swift */; };
-		67EE70CE2272CDAF003E98D5 /* TaskCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EE70CD2272CDAF003E98D5 /* TaskCollectionController.swift */; };
 		67EE70D02272CEC2003E98D5 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EE70CF2272CEC2003E98D5 /* TaskCell.swift */; };
 		67F2A0AD226DEF340035BB84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0AC226DEF340035BB84 /* AppDelegate.swift */; };
 		67F2A0B2226DEF340035BB84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67F2A0B0226DEF340035BB84 /* Main.storyboard */; };
 		67F2A0B4226DEF350035BB84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67F2A0B3226DEF350035BB84 /* Assets.xcassets */; };
 		67F2A0B7226DEF350035BB84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67F2A0B5226DEF350035BB84 /* LaunchScreen.storyboard */; };
-		67F2A0C2226DF3AE0035BB84 /* EquipmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0C1226DF3AE0035BB84 /* EquipmentController.swift */; };
+		67F2A0C2226DF3AE0035BB84 /* ListEquipmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0C1226DF3AE0035BB84 /* ListEquipmentController.swift */; };
 		67F2A0C5226DF4130035BB84 /* EquipmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0C4226DF4130035BB84 /* EquipmentCell.swift */; };
 		67F2A0C9226DF4580035BB84 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0C8226DF4580035BB84 /* SegueHandler.swift */; };
 		67F2A0CB226DFF040035BB84 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2A0CA226DFF040035BB84 /* TableViewDataSource.swift */; };
@@ -36,10 +36,10 @@
 		67BBD884226E447A0001915D /* AddFacilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFacilityController.swift; sourceTree = "<group>"; };
 		67CDE9A72272483E00D1E1BA /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		67DA5C10226FB50D005FB7C2 /* CapturePhotoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturePhotoService.swift; sourceTree = "<group>"; };
-		67DDCE8A2273A24E009A7086 /* EquipmentController+SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EquipmentController+SearchBarDelegate.swift"; sourceTree = "<group>"; };
+		67DDCE8A2273A24E009A7086 /* ListEquipmentController+SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListEquipmentController+SearchBarDelegate.swift"; sourceTree = "<group>"; };
+		67DE3FD522746EA400F789B5 /* TaskSelectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskSelectionController.swift; sourceTree = "<group>"; };
 		67E977EF2270DE3A002A356C /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		67EA7F70227043250092E125 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
-		67EE70CD2272CDAF003E98D5 /* TaskCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCollectionController.swift; sourceTree = "<group>"; };
 		67EE70CF2272CEC2003E98D5 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		67F2A0A9226DEF340035BB84 /* WorkSafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkSafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67F2A0AC226DEF340035BB84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		67F2A0B3226DEF350035BB84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67F2A0B6226DEF350035BB84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		67F2A0B8226DEF350035BB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		67F2A0C1226DF3AE0035BB84 /* EquipmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentController.swift; sourceTree = "<group>"; };
+		67F2A0C1226DF3AE0035BB84 /* ListEquipmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEquipmentController.swift; sourceTree = "<group>"; };
 		67F2A0C4226DF4130035BB84 /* EquipmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentCell.swift; sourceTree = "<group>"; };
 		67F2A0C8226DF4580035BB84 /* SegueHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
 		67F2A0CA226DFF040035BB84 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
@@ -124,9 +124,9 @@
 		67F2A0BE226DF34C0035BB84 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				67F2A0C1226DF3AE0035BB84 /* EquipmentController.swift */,
-				67DDCE8A2273A24E009A7086 /* EquipmentController+SearchBarDelegate.swift */,
-				67EE70CD2272CDAF003E98D5 /* TaskCollectionController.swift */,
+				67F2A0C1226DF3AE0035BB84 /* ListEquipmentController.swift */,
+				67DDCE8A2273A24E009A7086 /* ListEquipmentController+SearchBarDelegate.swift */,
+				67DE3FD522746EA400F789B5 /* TaskSelectionController.swift */,
 				67BBD884226E447A0001915D /* AddFacilityController.swift */,
 			);
 			path = Controller;
@@ -251,17 +251,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				67CDE9A82272483E00D1E1BA /* String+Extension.swift in Sources */,
+				67DE3FD622746EA400F789B5 /* TaskSelectionController.swift in Sources */,
 				67F2A0D6226E19730035BB84 /* WorkSafeDataStack.swift in Sources */,
 				67EA7F71227043250092E125 /* UIImage+Extension.swift in Sources */,
 				67F2A0C9226DF4580035BB84 /* SegueHandler.swift in Sources */,
-				67DDCE8B2273A24E009A7086 /* EquipmentController+SearchBarDelegate.swift in Sources */,
+				67DDCE8B2273A24E009A7086 /* ListEquipmentController+SearchBarDelegate.swift in Sources */,
 				67BBD883226E36410001915D /* Equipment.swift in Sources */,
 				67DA5C11226FB50D005FB7C2 /* CapturePhotoService.swift in Sources */,
 				67F2A0CE226E0B3E0035BB84 /* WorkSafe.xcdatamodeld in Sources */,
-				67EE70CE2272CDAF003E98D5 /* TaskCollectionController.swift in Sources */,
 				67F2A0CB226DFF040035BB84 /* TableViewDataSource.swift in Sources */,
 				67F2A0C5226DF4130035BB84 /* EquipmentCell.swift in Sources */,
-				67F2A0C2226DF3AE0035BB84 /* EquipmentController.swift in Sources */,
+				67F2A0C2226DF3AE0035BB84 /* ListEquipmentController.swift in Sources */,
 				67F2A0D2226E173F0035BB84 /* Managed.swift in Sources */,
 				67BBD885226E447A0001915D /* AddFacilityController.swift in Sources */,
 				67E977F02270DE3A002A356C /* FileManager+Extension.swift in Sources */,

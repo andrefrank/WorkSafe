@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension EquipmentController:UISearchBarDelegate{
+extension ListEquipmentController:UISearchBarDelegate{
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
        print(searchBar.text)

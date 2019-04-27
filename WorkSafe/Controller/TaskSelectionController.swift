@@ -8,14 +8,23 @@
 
 import UIKit
 
-
 struct SelectableTask{
     let image:UIImage
     let description:String
+    let type:Task_Type
+    
+    enum Task_Type{
+        case Issue
+        case Check
+        case Assign
+        case Time
+        case Information
+        case Activity
+    }
 }
 
 
-class TaskCollectionController: UICollectionViewController {
+class TaskSelectionController: UICollectionViewController {
 
     private let reuseIdentifier = "taskCell"
     
@@ -26,13 +35,16 @@ class TaskCollectionController: UICollectionViewController {
     
     //Static tasks
     private let selectableTasks=[
-        SelectableTask(image: UIImage(named: "compose")!, description: "Issues"),
-        SelectableTask(image: UIImage(named: "camera")!, description: "Check"),
-        SelectableTask(image: UIImage(named: "printer")!, description: "Assign equipment"),
-        SelectableTask(image: UIImage(named: "settings")!, description: "Time tracking"),
-        SelectableTask(image: UIImage(named: "printer")!, description: "Information"),
-        SelectableTask(image: UIImage(named: "settings")!, description: "Activity report")
+        SelectableTask(image: UIImage(named: "compose")!, description: "Issues",type: .Issue),
+        SelectableTask(image: UIImage(named: "camera")!, description: "Check", type:.Check),
+        SelectableTask(image: UIImage(named: "printer")!, description: "Assign equipment",type: .Assign),
+        SelectableTask(image: UIImage(named: "settings")!, description: "Time tracking",type: .Time),
+        SelectableTask(image: UIImage(named: "printer")!, description: "Information",type: .Information),
+        SelectableTask(image: UIImage(named: "settings")!, description: "Activity report",type: .Activity)
     ]
+    
+    //Mark:Public property
+    var dismissHandler:((SelectableTask.Task_Type)->Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +54,7 @@ class TaskCollectionController: UICollectionViewController {
 
 
 //MARK:-CollectionViewDelegateLayout - Cell layout
-extension TaskCollectionController:UICollectionViewDelegateFlowLayout{
+extension TaskSelectionController:UICollectionViewDelegateFlowLayout{
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         cellsPerRow = (traitCollection.verticalSizeClass == .compact) ? 3 : 2
@@ -59,7 +71,7 @@ extension TaskCollectionController:UICollectionViewDelegateFlowLayout{
 
 
   // MARK: UICollectionViewDataSource
-extension TaskCollectionController{
+extension TaskSelectionController{
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -80,13 +92,17 @@ extension TaskCollectionController{
 }
 
 
-extension TaskCollectionController{
+extension TaskSelectionController{
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected Row:\(indexPath.row)")
-        dismiss(animated: true, completion: nil)
-    }
+        
+        let type=selectableTasks[indexPath.row].type
+        
+            dismiss(animated: true) { [weak self] in
+                self?.dismissHandler?(type)
+            }
+        }
    
 }
 

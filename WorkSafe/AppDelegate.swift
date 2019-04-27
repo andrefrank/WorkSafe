@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController else {fatalError("No TabBarController available")}
             guard let navController=tabBarController.viewControllers?.first as? UINavigationController else {fatalError("No NavigationController available")}
-            guard let equipmentController = navController.viewControllers.first as? EquipmentController else {fatalError("Wrong ViewController in controller chain")}
+            guard let equipmentController = navController.viewControllers.first as? ListEquipmentController else {fatalError("Wrong ViewController in controller chain")}
             
             //Set data context
             equipmentController.managedObjectContext = container.viewContext

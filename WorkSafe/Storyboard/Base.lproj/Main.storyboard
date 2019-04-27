@@ -29,10 +29,10 @@
             </objects>
             <point key="canvasLocation" x="759" y="758"/>
         </scene>
-        <!--EquipmentController-->
+        <!--ListEquipmentController-->
         <scene sceneID="JFu-TD-myy">
             <objects>
-                <viewController id="Kmc-Vl-beO" userLabel="EquipmentController" customClass="EquipmentController" customModule="WorkSafe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Kmc-Vl-beO" userLabel="ListEquipmentController" customClass="ListEquipmentController" customModule="WorkSafe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="noz-B7-xwg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,7 +134,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" image="printer" id="I2n-pW-LnG"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="XQz-ey-GaA">
                             <connections>
-                                <segue destination="efW-Gm-tQu" kind="show" identifier="addEquipmentDetail" id="MJh-lB-Ofi"/>
+                                <action selector="addNewFacility:" destination="Kmc-Vl-beO" id="lXc-TK-ThQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -142,16 +142,17 @@
                         <outlet property="equipmentTableView" destination="f8b-0E-IBB" id="PGy-FC-Q7a"/>
                         <outlet property="equipmentsearchBar" destination="IJU-AZ-jj5" id="ijG-VZ-1hj"/>
                         <segue destination="bAC-kc-32p" kind="presentation" identifier="showTaskSelection" animates="NO" id="82C-sv-uXK"/>
+                        <segue destination="fhe-rl-7AU" kind="show" identifier="showIssueController" id="S1u-2s-EK2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OS3-BP-IfP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1573.5999999999999" y="757.87106446776613"/>
         </scene>
-        <!--IssueController-->
+        <!--ListIssueController-->
         <scene sceneID="OW1-Bc-iAu">
             <objects>
-                <viewController id="nAV-FP-wWt" userLabel="IssueController" sceneMemberID="viewController">
+                <viewController id="nAV-FP-wWt" userLabel="ListIssueController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mhh-n5-qQG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -377,7 +378,7 @@
         <!--TaskSelectionController-->
         <scene sceneID="WO0-jL-VZg">
             <objects>
-                <collectionViewController id="bAC-kc-32p" userLabel="TaskSelectionController" customClass="TaskCollectionController" customModule="WorkSafe" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="bAC-kc-32p" userLabel="TaskSelectionController" customClass="TaskSelectionController" customModule="WorkSafe" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="8Dy-5I-WGT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -433,6 +434,21 @@
             </objects>
             <point key="canvasLocation" x="1573.5999999999999" y="11.244377811094454"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="oxc-pe-o4W">
+            <objects>
+                <viewController id="fhe-rl-7AU" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MvT-06-KY5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="f5h-bj-mYn"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9iu-Os-sZr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2654" y="9"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="wU1-o8-qUW">
             <objects>
@@ -477,7 +493,4 @@
         <image name="home" width="28" height="28"/>
         <image name="printer" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="MJh-lB-Ofi"/>
-    </inferredMetricsTieBreakers>
 </document>
