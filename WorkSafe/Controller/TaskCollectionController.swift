@@ -36,7 +36,7 @@ class TaskCollectionController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor.white.withAlphaComponent(0.9)
     }
 }
 
@@ -75,7 +75,6 @@ extension TaskCollectionController{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TaskCell
         
        cell.configureCell(task: selectableTasks[indexPath.row])
-        // Configure the cell
         return cell
     }
 }

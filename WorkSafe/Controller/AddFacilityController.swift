@@ -102,7 +102,7 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
         departmentTextField.text = fac.department
         floorLevelTextField.text = "\(fac.floor)"
         
-        if let photoURL = fac.photoURL {
+        if let photoURL = fac.photoURL,!photoURL.isEmpty {
             facilityImageView.image = UIImage.loadImageFromUserDirectory(photoURL: photoURL)
         } else {
             facilityImageView.image = UIImage(named: "camera")

@@ -24,7 +24,7 @@ class EquipmentCell: UITableViewCell {
        roomNumberLabel.text="Room " + facility.roomNumber
        floorLevelLabel.text="Floor \(facility.floor)"
        
-        if let photoURL = facility.photoURL{
+        if let photoURL = facility.photoURL, !photoURL.isEmpty{
             facilityImageView.image = UIImage.loadImageFromUserDirectory(photoURL: photoURL)
         }else{
             facilityImageView.image=UIImage(named: "camera")

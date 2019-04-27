@@ -31,9 +31,10 @@ class EquipmentController: UIViewController,SegueHandler {
         case issueCell
     }
     
-    var managedObjectContext: NSManagedObjectContext!
+    var searchTask:DispatchWorkItem?
     
-    private var equipmentDataSource:TableViewDataSource<EquipmentController>!
+    var managedObjectContext: NSManagedObjectContext!
+    var equipmentDataSource:TableViewDataSource<EquipmentController>!
     
     
     //MARK:- Life cycle EquipmentController
@@ -51,7 +52,17 @@ class EquipmentController: UIViewController,SegueHandler {
         request.returnsObjectsAsFaults = false
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         equipmentDataSource = TableViewDataSource(withTableView:equipmentTableView, cellIdentifier:CellIdentifier.equipmentCell.rawValue, fetchedResultController: frc, delegate: self)
-        print(frc)
+        
+        
+        
+    
+    }
+    @IBAction func filterBarButtonPressed(_ sender: Any?){
+        let text="Shop"
+        let predicate = NSPredicate(format:" (department CONTAINS[c] %@) OR (roomNumber CONTAINS[c] %@)",text,text)
+        let filterRequest = Facility.sortedFetchRequest(with: predicate)
+        equipmentDataSource.filter(request: filterRequest)
+        
     }
 }
 

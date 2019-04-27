@@ -9,18 +9,20 @@
 import UIKit
 import CoreData
 
-
+//MARK:- TableView Core Data Delegate protocol
 protocol TableViewCoreDataSourceDelegate:class {
     associatedtype Object:NSFetchRequestResult
     associatedtype Cell:UITableViewCell
     func configure(cell:Cell,withObject object:Object)
 }
 
+
+//MARK:- TableView DataSource class which handles NSFetchResults
 class TableViewDataSource<Delegate:TableViewCoreDataSourceDelegate>:NSObject,UITableViewDataSource,NSFetchedResultsControllerDelegate{
     typealias Object = Delegate.Object
     typealias Cell = Delegate.Cell
     
-    
+    //Entry point - Init
     required init(withTableView tableView:UITableView, cellIdentifier:String,fetchedResultController:NSFetchedResultsController<Object>,delegate:Delegate ){
         
         self.tableView=tableView
@@ -36,23 +38,39 @@ class TableViewDataSource<Delegate:TableViewCoreDataSourceDelegate>:NSObject,UIT
         self.tableView.reloadData()
     }
     
+    
+    //MARK:- Public interface methods
+    
+    //Returns the entities' data at the specified index path
     func objectAtIndexPath(_ indexPath: IndexPath) -> Object {
         return fetchedResultController.object(at: indexPath)
     }
   
+    
     var selectedObject:Object?{
-        
         guard let index = tableView.indexPathForSelectedRow else {return nil}
         return objectAtIndexPath(index)
-        
     }
     
     
+    //Used to filter specified objects using a new FetchRequest
+    func filter(request:NSFetchRequest<Delegate.Object>){
+        fetchedResultController.fetchRequest.sortDescriptors=request.sortDescriptors
+        fetchedResultController.fetchRequest.predicate=request.predicate
+        
+        try! fetchedResultController.performFetch()
+        self.tableView.reloadData()
+    }
+    
+    
+    //MARK:- Private Properties
     private let tableView:UITableView
     private let cellIdentifier:String
     private weak var delegate:Delegate?
     fileprivate let fetchedResultController:NSFetchedResultsController<Object>
     
+    
+    //MARK:- TableView Datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedResultController.fetchedObjects?.count ?? 0
     }
@@ -80,8 +98,6 @@ class TableViewDataSource<Delegate:TableViewCoreDataSourceDelegate>:NSObject,UIT
     }
     
     //MARK:- NSFetchedResultsControllerDeleagte
-
-    
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }

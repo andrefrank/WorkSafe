@@ -121,7 +121,11 @@
                         <viewLayoutGuide key="safeArea" id="ihy-ID-aeF"/>
                     </view>
                     <navigationItem key="navigationItem" title="Facility and equipment list" largeTitleDisplayMode="always" id="s4M-fj-0SA">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="printer" id="I2n-pW-LnG"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="printer" id="I2n-pW-LnG">
+                            <connections>
+                                <action selector="filterBarButtonPressed:" destination="Kmc-Vl-beO" id="VHf-zF-lPq"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="XQz-ey-GaA">
                             <connections>
                                 <segue destination="efW-Gm-tQu" kind="show" identifier="addEquipmentDetail" id="MJh-lB-Ofi"/>

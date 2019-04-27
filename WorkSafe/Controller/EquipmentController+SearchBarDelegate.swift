@@ -32,9 +32,22 @@ extension EquipmentController:UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("Change")
+    
+        searchTask?.cancel()
+        let task=DispatchWorkItem(block: {[weak self] in
+            self?.executeSearch(withText: searchText)
+        })
+        searchTask=task
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.75, execute: task)
+        
     }
     
-    
-    
+    private func executeSearch(withText text:String){
+        if !text.isEmpty{
+            let predicate = NSPredicate(format:" (department CONTAINS[c] %@) OR (roomNumber CONTAINS[c] %@)",text,text)
+            let filterRequest = Facility.sortedFetchRequest(with: predicate)
+            equipmentDataSource.filter(request: filterRequest)
+        }
+    }
 }

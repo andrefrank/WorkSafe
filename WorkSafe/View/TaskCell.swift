@@ -25,7 +25,7 @@ class TaskCell: UICollectionViewCell {
     func configureCell(task:SelectableTask){
         taskImageView.image=task.image
         taskDescriptionLabel.text=task.description
-        backgroundColor=UIColor.lightGray
+        backgroundColor=UIColor.white.withAlphaComponent(0.5)
     }
 
 

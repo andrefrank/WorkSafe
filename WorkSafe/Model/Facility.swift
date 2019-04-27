@@ -37,7 +37,7 @@ final class Facility:NSManagedObject{
 
 extension Facility:Managed{
     static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: #keyPath(plant), ascending: false)]
+        return [NSSortDescriptor(key: #keyPath(department), ascending: false)]
     }
 }
 
