@@ -9,28 +9,6 @@
 import UIKit
 
 extension ListEquipmentController:UISearchBarDelegate{
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-       print(searchBar.text)
-      searchBar.resignFirstResponder()
-    }
-    
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        print("Did begin editing")
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("SearchBar button clicked")
-        searchBar.resignFirstResponder()
-    }
-    
-
-
-    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        print("Bookmark button pressed")
-    }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     
         searchTask?.cancel()
@@ -47,6 +25,9 @@ extension ListEquipmentController:UISearchBarDelegate{
         if !text.isEmpty{
             let predicate = NSPredicate(format:" (department CONTAINS[c] %@) OR (roomNumber CONTAINS[c]  %@) OR userDefinedName CONTAINS[c] %@",text,text,text)
             let filterRequest = Facility.sortedFetchRequest(with: predicate)
+            equipmentDataSource.filter(request: filterRequest)
+        }else{
+            let filterRequest = Facility.sortedFetchRequest
             equipmentDataSource.filter(request: filterRequest)
         }
     }

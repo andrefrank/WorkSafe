@@ -19,7 +19,6 @@ class EquipmentCell: UITableViewCell {
     
     @IBOutlet weak var floorLevelLabel: UILabel!
     
-    
     func configure(for facility: Facility) {
        departmentLabel.text=facility.department
        roomNumberLabel.text="Room " + facility.roomNumber

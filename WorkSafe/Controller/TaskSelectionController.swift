@@ -44,11 +44,12 @@ class TaskSelectionController: UICollectionViewController {
     ]
     
     //Mark:Public property
-    var dismissHandler:((SelectableTask.Task_Type)->Void)?
+    var dismissHandler:((SelectableTask.Task_Type, UIViewController?)->Void)?
     
+    //MARK: - Life cycle of TaskSelectionController
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = UIColor.white.withAlphaComponent(0.9)
+        collectionView.backgroundColor=UIColor.white.withAlphaComponent(0.9)
     }
 }
 
@@ -98,11 +99,26 @@ extension TaskSelectionController{
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let type=selectableTasks[indexPath.row].type
-        
-            dismiss(animated: true) { [weak self] in
-                self?.dismissHandler?(type)
-            }
-        }
+            dismissHandler?(type,self)
+
+    }
    
 }
 
+
+extension TaskSelectionController{
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier{
+        case "showIssueController":
+            guard let facility=sender as? Facility, let vc=segue.destination as? IssueController else {
+                fatalError("Wrong object type")
+            }
+            vc.facility=facility
+        default:
+            fatalError("Unknown switch type")
+        }
+    }
+    
+    
+}
