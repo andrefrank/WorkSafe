@@ -11,8 +11,14 @@ import UIKit
 @IBDesignable
 
 class PrioritySegmentedControl: UIControl{
+    enum Prioritiy:Int{
+        case Low
+        case Middle
+        case High
+    }
     
-    var selectedSegmentIndex:Int=0
+    
+    var selectedSegmentIndex=0
     
     @IBInspectable
     var borderWidth:CGFloat=0{
@@ -59,6 +65,7 @@ class PrioritySegmentedControl: UIControl{
     
     private var selectorView:UIView!
     private var buttons=[UIButton]()
+    private var selectorColors:[UIColor]=[.green,.orange,.red]
     
     
     private func updateView(){
@@ -85,7 +92,8 @@ class PrioritySegmentedControl: UIControl{
         let selectorWidth=frame.width / CGFloat(buttonTitles.count)
         selectorView = UIView(frame: CGRect(x: 0, y: 0, width: selectorWidth, height: frame.height))
         selectorView.layer.cornerRadius=frame.height/2
-        selectorView.backgroundColor=selectorColor
+        
+        selectorView.backgroundColor=selectorColors[selectedSegmentIndex]
         addSubview(selectorView)
 
         let sv=UIStackView(arrangedSubviews: buttons)
@@ -114,9 +122,9 @@ class PrioritySegmentedControl: UIControl{
                     self.selectorView.frame.origin.x=startPosition
                 }
                   btn.setTitleColor(self.selectorTextColor, for: .normal)
-                  selectedSegmentIndex=buttonIndex
+                  selectedSegmentIndex = buttonIndex
+                  selectorView.backgroundColor=selectorColors[selectedSegmentIndex]
             }
-    
         }
         
         sendActions(for: .valueChanged)

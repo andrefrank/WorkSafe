@@ -18,28 +18,18 @@ struct ExpandableSection {
 class AddIssueController: UITableViewController {
     let sectionHeight:CGFloat=36
     
-    
-    
     private var sectionContents: [ExpandableSection] = [
         ExpandableSection(name: "Image", rowCount: 1, isExpanded: true,shouldExpanded: true),
         ExpandableSection(name: "Object", rowCount: 1, isExpanded:true, shouldExpanded: false),
         ExpandableSection(name: "Title", rowCount: 1, isExpanded:true, shouldExpanded: false),
-         ExpandableSection(name: "Description", rowCount: 1, isExpanded:true, shouldExpanded: false),
-         ExpandableSection(name: "Inventory No.", rowCount: 1, isExpanded:true, shouldExpanded: false),
+        ExpandableSection(name: "Description", rowCount: 1, isExpanded:true, shouldExpanded: false),
+        ExpandableSection(name: "Inventory No.", rowCount: 1, isExpanded:true, shouldExpanded: false),
         ExpandableSection(name: "Status", rowCount: 1, isExpanded:true, shouldExpanded: false),
         ExpandableSection(name: "Priority", rowCount: 1, isExpanded:true, shouldExpanded: false)
     ]
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    
-    @IBAction func switchPriority(_ sender: Any) {
-        print((sender as! PrioritySegmentedControl).selectedSegmentIndex)
-        
     }
     
 }

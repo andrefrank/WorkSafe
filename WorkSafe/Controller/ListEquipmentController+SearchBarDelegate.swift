@@ -21,6 +21,14 @@ extension ListEquipmentController:UISearchBarDelegate{
         
     }
     
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
     private func executeSearch(withText text:String){
         if !text.isEmpty{
             let predicate = NSPredicate(format:" (department CONTAINS[c] %@) OR (roomNumber CONTAINS[c]  %@) OR userDefinedName CONTAINS[c] %@",text,text,text)
