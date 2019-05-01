@@ -90,8 +90,8 @@
 		67D038E52278B2ED00962128 /* HorizontalPicker */ = {
 			isa = PBXGroup;
 			children = (
-				67D038EA2278B4AA00962128 /* Ressources */,
 				67D038E62278B33800962128 /* HorizontalCell.swift */,
+				67D038EA2278B4AA00962128 /* Ressources */,
 			);
 			path = HorizontalPicker;
 			sourceTree = "<group>";
@@ -104,6 +104,14 @@
 				67D038EC2278B4CD00962128 /* wheelBackground@2x.png */,
 			);
 			path = Ressources;
+			sourceTree = "<group>";
+		};
+		67D20932227A048F006A6E30 /* PrioritySegmentedControll */ = {
+			isa = PBXGroup;
+			children = (
+				67CFB65822763A18005674BE /* PrioritySegmentedControl.swift */,
+			);
+			path = PrioritySegmentedControll;
 			sourceTree = "<group>";
 		};
 		67DA5C12226FCCE9005FB7C2 /* Current state images */ = {
@@ -175,10 +183,10 @@
 		67F2A0BF226DF3570035BB84 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				67D20932227A048F006A6E30 /* PrioritySegmentedControll */,
 				67D038E52278B2ED00962128 /* HorizontalPicker */,
 				67F2A0C4226DF4130035BB84 /* EquipmentCell.swift */,
 				67EE70CF2272CEC2003E98D5 /* TaskCell.swift */,
-				67CFB65822763A18005674BE /* PrioritySegmentedControl.swift */,
 				672C562B22758582005157CE /* IssueSectionHeader.swift */,
 			);
 			path = View;

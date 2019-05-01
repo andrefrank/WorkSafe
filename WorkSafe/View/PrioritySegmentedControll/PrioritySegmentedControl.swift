@@ -63,6 +63,13 @@ class PrioritySegmentedControl: UIControl{
         }
     }
     
+
+    var textFont:UIFont=UIFont.boldSystemFont(ofSize: 14){
+        didSet{
+            updateView()
+        }
+    }
+    
     private var selectorView:UIView!
     private var buttons=[UIButton]()
     private var selectorColors:[UIColor]=[.green,.orange,.red]
@@ -78,6 +85,7 @@ class PrioritySegmentedControl: UIControl{
         
         for title in buttonTitles{
             let button=UIButton(type: .system)
+            button.titleLabel?.font=textFont
             button.setTitle(title, for: .normal)
             button.setTitleColor(textColor, for: .normal)
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)

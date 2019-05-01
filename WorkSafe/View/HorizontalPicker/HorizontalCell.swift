@@ -46,7 +46,7 @@ class HorizontalPickerView: UIView, UIScrollViewDelegate {
         }
     }
     
-    var itemFont: UIFont!{
+    var itemFont: UIFont=UIFont.boldSystemFont(ofSize: 14){
         willSet{
             for view in visibleViews{
                 if let alabel=view as? UILabel{
@@ -59,6 +59,7 @@ class HorizontalPickerView: UIView, UIScrollViewDelegate {
                     alabel.font=newValue
                 }
             }
+            setNeedsDisplay()
         }
     }
     
@@ -152,7 +153,7 @@ class HorizontalPickerView: UIView, UIScrollViewDelegate {
     
     func commonInit() {
         itemFont = UIFont.boldSystemFont(ofSize: 24.0)
-        itemColor = UIColor.black
+        itemColor = UIColor.darkGray
         showGlass = false
         allowSlowDeceleration = false
         itemCount = 0
@@ -172,7 +173,7 @@ class HorizontalPickerView: UIView, UIScrollViewDelegate {
         contentView.delegate=self
         addSubview(contentView)
         
-        if UIDevice.current.systemVersion >= "5.0" {
+        if Int(UIDevice.current.systemVersion) ?? 6 >= 5  {
             backGroundImage = UIImage(named: "wheelBackground")?.resizableImage(withCapInsets: UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0))
             
             glassImage = UIImage(named: "stretchableGlass")?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 1))

@@ -8,14 +8,9 @@
 
 import UIKit
 
-class IssueSectionHeader: UIView{
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+let sectionHeaderIndentifier="sectionHeader"
+
+class IssueSectionHeader: UITableViewHeaderFooterView{
     private var sectionNameLabel: UILabel = {
         let l = UILabel(frame: CGRect.zero)
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +33,6 @@ class IssueSectionHeader: UIView{
     
     private func setupView() {
          let margins = layoutMarginsGuide
-        
         addSubview(sectionNameLabel)
        sectionNameLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 10).isActive=true
        sectionNameLabel.centerYAnchor.constraint(equalTo: margins.centerYAnchor, constant: 0).isActive=true
@@ -49,17 +43,18 @@ class IssueSectionHeader: UIView{
         
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setupView()
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
     
-    //Expose buttons tag
+    //Expose button tags
     override var tag:Int{
         set{
             sectionDetailButton.tag=newValue
@@ -67,10 +62,26 @@ class IssueSectionHeader: UIView{
         get{return sectionDetailButton.tag}
     }
     
-    func configure(sectionName:String,detailText:String){
-        sectionDetailButton.setTitle(detailText, for: .normal)
-        sectionNameLabel.text=sectionName
+   
+    
+    var sectionButtonTitle:String{
+        get{
+            return sectionDetailButton.titleLabel?.text ?? ""
+        }
+        set{
+            sectionDetailButton.setTitle(newValue, for: .normal)
+        }
     }
+    
+    var sectionName:String{
+        get{
+            return sectionNameLabel.text ?? ""
+        }
+        set{
+            sectionNameLabel.text=newValue
+        }
+    }
+    
     
     func addTarget(_ target:Any?,action: Selector, for:UIControl.Event){
        sectionDetailButton.addTarget(target, action: action, for: .touchUpInside)
