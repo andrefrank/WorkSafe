@@ -22,7 +22,10 @@ class AddIssueController: UITableViewController,SegueHandler {
     //MARK:-@IBOutlets
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var statusPickerView: HorizontalPickerView!
+    @IBOutlet weak var datPickerView: UIPickerView!
     
+    
+    //Segue handler protocol
     enum SegueIdentifier:String{
         case showObjects="showObjects"
         case showTitles="showIssueTitles"
@@ -39,17 +42,14 @@ class AddIssueController: UITableViewController,SegueHandler {
         ExpandableSection(name: "Inventory No.", rowCount: 1, isExpanded:true, shouldExpanded: false),
         ExpandableSection(name: "Status", rowCount: 1, isExpanded:false, shouldExpanded: false),
         ExpandableSection(name: "Priority", rowCount: 1, isExpanded:false, shouldExpanded: false),
-      //  ExpandableSection(name: "Termination date", rowCount: 1, isExpanded: false, shouldExpanded: true),
+      ExpandableSection(name: "Deadline", rowCount: 1, isExpanded: false, shouldExpanded: true),
       //  ExpandableSection(name: "Responsibility", rowCount: 1, isExpanded: false, shouldExpanded: true)
     ]
     
     //MARK:- Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
        setupGUIElements()
-
-        
     }
     
     func setupGUIElements(){
@@ -66,7 +66,84 @@ class AddIssueController: UITableViewController,SegueHandler {
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextView.layer.borderWidth=0.5
         
+        datPickerView.delegate=self
+        datPickerView.dataSource=self
+
     }
+}
+
+enum PickerSection:Int,CaseIterable{
+    case Day=0
+    case Month=1
+    case Year=2
+    
+    static func sectionForComponent(component:Int)->PickerSection{
+        guard let pickerSection=PickerSection(rawValue: component) else {fatalError("Wrong component value")}
+        return pickerSection
+    }
+}
+
+struct PickerDate{
+    static func yearFromNow(inFuture distance:Int)->Int{
+        let currentDate=Date()
+        let calendar=Calendar.current
+        //Extract each component
+        let year=calendar.component(.year, from: currentDate)
+        return year
+    }
+    
+    static func lastDay(ofMonth month:Int, byYear year:Int)->Date?{
+        let interval = Calendar.current.dateInterval(of: .month, for:Date())
+         return interval?.end
+    }
+}
+
+//MARK:- Custom Date Picker
+extension AddIssueController:UIPickerViewDelegate,UIPickerViewDataSource{
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        switch PickerSection.sectionForComponent(component: component) {
+        case .Day:
+            return 31
+        case .Month:
+            return 12
+        case .Year:
+            return PickerDate.yearFromNow(inFuture: 20)
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return PickerSection.allCases.count
+    }
+    
+    
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        switch PickerSection.sectionForComponent(component: component) {
+        case .Day:
+            return
+        case .Month:
+            pickerView.reloadComponent(0)
+        case .Year:
+            pickerView.reloadComponent(0)
+        }
+        
+    }
+    
+    
+   
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let x=pickerView.frame.width*CGFloat(component)
+        let labelWidth=pickerView.frame.width / CGFloat(3)
+        let y=pickerView.frame.height/2 - CGFloat(25)/CGFloat(2)
+        let Label=UILabel(frame: CGRect(x:x, y: y, width: labelWidth, height: 25))
+        
+        Label.text="Test"
+        return Label
+    
+    }
+    
 }
 
 
