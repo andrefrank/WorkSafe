@@ -11,7 +11,6 @@ import UIKit
 class IssueController: UIViewController {
 
     //MARK:-IBOutlets
-    
     @IBOutlet weak var facilityImageView: UIImageView!
     @IBOutlet weak var departmentLabel: UILabel!
     @IBOutlet weak var userDefinedNameLabel: UILabel!

@@ -74,10 +74,8 @@ class PrioritySegmentedControl: UIControl{
             view.removeFromSuperview()
         }
         
-        
-        
-        
         let buttonTitles=commaSeparatedButtonTitles.components(separatedBy: ",")
+        
         for title in buttonTitles{
             let button=UIButton(type: .system)
             button.setTitle(title, for: .normal)

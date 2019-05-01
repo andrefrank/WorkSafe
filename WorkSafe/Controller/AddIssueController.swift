@@ -16,7 +16,12 @@ struct ExpandableSection {
 }
 
 class AddIssueController: UITableViewController {
-    let sectionHeight:CGFloat=36
+    
+    
+    @IBOutlet weak var statusPickerView: HorizontalPickerView!
+    
+    //MARK:- Section properties
+    private let sectionHeight:CGFloat=36
     
     private var sectionContents: [ExpandableSection] = [
         ExpandableSection(name: "Image", rowCount: 1, isExpanded: true,shouldExpanded: true),
@@ -25,12 +30,46 @@ class AddIssueController: UITableViewController {
         ExpandableSection(name: "Description", rowCount: 1, isExpanded:true, shouldExpanded: false),
         ExpandableSection(name: "Inventory No.", rowCount: 1, isExpanded:true, shouldExpanded: false),
         ExpandableSection(name: "Status", rowCount: 1, isExpanded:true, shouldExpanded: false),
-        ExpandableSection(name: "Priority", rowCount: 1, isExpanded:true, shouldExpanded: false)
+        ExpandableSection(name: "Priority", rowCount: 1, isExpanded:true, shouldExpanded: false),
+      //  ExpandableSection(name: "Termination date", rowCount: 1, isExpanded: false, shouldExpanded: true),
+      //  ExpandableSection(name: "Responsibility", rowCount: 1, isExpanded: false, shouldExpanded: true)
     ]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        statusPickerView.delegate=self
+        statusPickerView.dataSource=self
+        statusPickerView.showGlass=true
+        statusPickerView.reloadData()
     }
+}
+
+
+extension AddIssueController:HorizontalPickerViewDelegate,HorizontalPickerViewDataSource{
+    func pickerView_didSelectItem(pickerView: HorizontalPickerView, item: Int) {
+        print(item)
+    }
+    
+    func pickerView_willBeginChangeItem(pickerView: HorizontalPickerView) {
+        print("Change")
+    }
+    
+    func numberOfItemsInPickerView(horizontalPickerView: HorizontalPickerView) -> Int {
+        return 3
+    }
+    
+    func titleforItemInPickerView(horizontalPickerView: HorizontalPickerView, forItem item: Int) -> String {
+        
+        let statusItems:[String]=["Not started","Started","Completed"]
+        return statusItems[item]
+        
+    }
+    
+    
+    
+    
     
 }
 
