@@ -49,9 +49,6 @@ class AddFacilityController: UITableViewController, CapturePhotoServiceDelegate 
         floorLevelTextField.delegate = self
         roomNumberTextField.delegate = self
         userDefinedNameTextField.delegate = self
-        
-        
-        
     }
     
     

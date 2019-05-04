@@ -92,6 +92,14 @@ class AddIssueController: UITableViewController,SegueHandler {
         
         tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(dismissKeyboardOnGesture(gesture:))))
         
+        
+        let flowLayout=UICollectionViewFlowLayout()
+       flowLayout.scrollDirection = .horizontal
+        pictureCollectionView.collectionViewLayout=flowLayout
+        pictureCollectionView.delegate=self
+        pictureCollectionView.dataSource=self
+        
+        
     }
     
     @objc func dismissKeyboardOnGesture(gesture:UITapGestureRecognizer){
@@ -300,8 +308,31 @@ extension AddIssueController{
                 vc.navigationItem.title=title
                 vc.navigationItem.rightBarButtonItem=UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
             }
-        
     }
+}
+
+extension AddIssueController:UICollectionViewDelegateFlowLayout,UICollectionViewDelegate{
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
+    
+}
+
+
+extension AddIssueController:UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+        let cell=collectionView.dequeueReusableCell(withReuseIdentifier: "pictureCell", for: indexPath)
+        cell.backgroundColor = UIColor.red
+        return cell
+    }
+    
     
     
     
