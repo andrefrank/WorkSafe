@@ -14,16 +14,23 @@ struct ExpandableSection {
     let rowCount: Int
     var isExpanded: Bool
     var shouldExpanded:Bool
+    var sectionButtonImage:UIImage?
+    var sectionButtonTitle:String?
+    
 }
 
 class AddIssueController: UITableViewController,SegueHandler {
     
     
     //MARK:-@IBOutlets
+    
+    @IBOutlet weak var issueTitleTextField: UITextField!
+    @IBOutlet weak var objectTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var statusPickerView: HorizontalPickerView!
-    @IBOutlet weak var datPickerView: UIPickerView!
+    @IBOutlet weak var datePickerView: UIPickerView!
     
+    @IBOutlet weak var pictureCollectionView: UICollectionView!
     
     //Segue handler protocol
     enum SegueIdentifier:String{
@@ -33,16 +40,25 @@ class AddIssueController: UITableViewController,SegueHandler {
     
     
     //MARK:- Section properties
-    private let sectionHeight:CGFloat=36
+    private let sectionHeaderHeight:CGFloat=48
+    
+    
     private var sectionContents: [ExpandableSection] = [
-        ExpandableSection(name: "Image", rowCount: 1, isExpanded: true,shouldExpanded: true),
-        ExpandableSection(name: "Object", rowCount: 1, isExpanded:true, shouldExpanded: false),
-        ExpandableSection(name: "Title", rowCount: 1, isExpanded:true, shouldExpanded: false),
-        ExpandableSection(name: "Description", rowCount: 1, isExpanded:false, shouldExpanded: false),
-        ExpandableSection(name: "Inventory No.", rowCount: 1, isExpanded:true, shouldExpanded: false),
-        ExpandableSection(name: "Status", rowCount: 1, isExpanded:false, shouldExpanded: false),
-        ExpandableSection(name: "Priority", rowCount: 1, isExpanded:false, shouldExpanded: false),
-      ExpandableSection(name: "Deadline", rowCount: 1, isExpanded: false, shouldExpanded: true),
+        ExpandableSection(name: "Image", rowCount: 1, isExpanded: true,shouldExpanded: true,sectionButtonImage:UIImage(named: "camera"),sectionButtonTitle:nil),
+        
+        ExpandableSection(name: "Object", rowCount: 1, isExpanded:true, shouldExpanded: false,sectionButtonImage:UIImage(named: "arrow_right"),sectionButtonTitle:nil),
+        
+        ExpandableSection(name: "Title", rowCount: 1, isExpanded:true, shouldExpanded: false,sectionButtonImage: UIImage(named: "images"),sectionButtonTitle: nil),
+            
+        ExpandableSection(name: "Description", rowCount: 1, isExpanded:false, shouldExpanded: false, sectionButtonImage:UIImage(named: "microphone"),sectionButtonTitle:nil),
+        
+        ExpandableSection(name: "Inventory No.", rowCount:1, isExpanded:true, shouldExpanded: false,sectionButtonImage:UIImage(named: "camera"),sectionButtonTitle:nil),
+        
+        ExpandableSection(name: "Status", rowCount: 1, isExpanded:false, shouldExpanded: false,sectionButtonImage: nil,sectionButtonTitle: nil),
+        
+        ExpandableSection(name: "Priority", rowCount: 1, isExpanded:false, shouldExpanded: false,sectionButtonImage: nil,sectionButtonTitle: nil),
+        
+      ExpandableSection(name: "Deadline", rowCount: 1, isExpanded: false, shouldExpanded: true,sectionButtonImage: nil,sectionButtonTitle: nil)
       //  ExpandableSection(name: "Responsibility", rowCount: 1, isExpanded: false, shouldExpanded: true)
     ]
     
@@ -62,15 +78,38 @@ class AddIssueController: UITableViewController,SegueHandler {
         //Necessary to use the delegate method 'tableView.view(for header, in section)'
         tableView.register(IssueSectionHeader.self, forHeaderFooterViewReuseIdentifier: sectionHeaderIndentifier)
         
+        
         descriptionTextView.layer.cornerRadius=8
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextView.layer.borderWidth=0.5
         
-        datPickerView.delegate=self
-        datPickerView.dataSource=self
+        datePickerView.delegate=self
+        datePickerView.dataSource=self
+        
+        
+        objectTextField.delegate=self
+        issueTitleTextField.delegate=self
+        
+        tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(dismissKeyboardOnGesture(gesture:))))
+        
+    }
+    
+    @objc func dismissKeyboardOnGesture(gesture:UITapGestureRecognizer){
+        descriptionTextView.endEditing(true)
+        objectTextField.endEditing(true)
+        issueTitleTextField.endEditing(true)
+    }
 
+}
+
+extension AddIssueController:UITextFieldDelegate{
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
     }
 }
+
 
 enum PickerSection:Int,CaseIterable{
     case Day=0
@@ -169,6 +208,68 @@ extension AddIssueController:HorizontalPickerViewDelegate,HorizontalPickerViewDa
     }
 }
 
+extension AddIssueController:IssueSectionHeaderActionItemDelegate{
+    
+    //MARK:-Header for Section Delegate methods
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: sectionHeaderIndentifier) as! IssueSectionHeader
+        
+        showActionButton(forSection: section, initialView: view,show:sectionContents[section].isExpanded)
+        
+        //button touched handling
+        view.delegate=self
+        
+        view.configureIssueHeader(withTag: section,sectionTitle:sectionContents[section].name,  actionButtonTitle:sectionContents[section].sectionButtonTitle , actionButtonImage:sectionContents[section].sectionButtonImage)
+        
+       
+        return view
+    }
+    
+    func showActionButton(forSection section:Int,initialView:IssueSectionHeader?=nil,show:Bool){
+        
+        let sectionView = tableView.headerView(forSection: section) as? IssueSectionHeader ?? initialView
+        
+        if sectionContents[section].isExpanded{
+            sectionView?.actionButton.isHidden=false
+        }else{
+            sectionView?.actionButton.isHidden=true
+        }
+    }
+    
+    func leftActionItemTouched(section: Int) {
+        var changeRows = [IndexPath]()
+        for index in 0..<sectionContents[section].rowCount {
+            changeRows.append(IndexPath(row: index, section: section))
+        }
+        
+        if sectionContents[section].isExpanded {
+            sectionContents[section].isExpanded = false
+            //Change button title before deletion due to header cell recycling
+            showActionButton(forSection: section, show: false)
+            
+            tableView.deleteRows(at: changeRows, with: .fade)
+        } else {
+            sectionContents[section].isExpanded = true
+            //Change button title before insertion due to header cell dequeing
+            showActionButton(forSection: section, show: false)
+            
+            tableView.insertRows(at: changeRows, with: .fade)
+            
+        }
+    }
+    
+    func rightActionItemTouchedIn(section: Int) {
+        print(section)
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return sectionHeaderHeight
+    }
+}
+
+
 //MARK:- Table View Delegate & DataSource
 extension AddIssueController {
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -179,60 +280,6 @@ extension AddIssueController {
         return sectionContents[section].isExpanded ? sectionContents[section].rowCount : 0
     }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: sectionHeaderIndentifier) as! IssueSectionHeader
-        
-        view.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height)
-        
-        view.addTarget(self, action: #selector(handleSectionDetailButtonPressed(_:)), for: .touchUpInside)
-        view.sectionName=sectionContents[section].name
-        setButtonTitle(forSection: section, initialView: view)
-        view.tag = section
-
-        return view
-    }
-    
-    func setButtonTitle(forSection section:Int,initialView:IssueSectionHeader?=nil){
-        let collapseTitles=["Show details","Hide details"]
-        
-        let sectionView = tableView.headerView(forSection: section) as? IssueSectionHeader ?? initialView
-    
-            if sectionContents[section].isExpanded{
-                sectionView!.sectionButtonTitle=collapseTitles[1]
-            }else{
-                sectionView!.sectionButtonTitle=collapseTitles[0]
-            }
-    }
-    
-    
-    @objc func handleSectionDetailButtonPressed(_ sender:Any?) {
-
-        let section = (sender as! UIButton).tag
-       
-        var changeRows = [IndexPath]()
-        for index in 0..<sectionContents[section].rowCount {
-            changeRows.append(IndexPath(row: index, section: section))
-        }
-
-        if sectionContents[section].isExpanded {
-            sectionContents[section].isExpanded = false
-            //Change button title before deletion due to header cell recycling
-            setButtonTitle(forSection: section)
-            tableView.deleteRows(at: changeRows, with: .fade)
-        } else {
-            sectionContents[section].isExpanded = true
-            //Change button title before insertion due to header cell dequeing
-            setButtonTitle(forSection: section)
-            tableView.insertRows(at: changeRows, with: .fade)
-           
-        }
-        
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return sectionHeight
-    }
 }
 
 //MARK:- Navigation

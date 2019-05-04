@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		672C562A22757E99005157CE /* AddIssueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672C562922757E99005157CE /* AddIssueController.swift */; };
+		670EFE74227B724D00D0B2A9 /* AddIssueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670EFE73227B724D00D0B2A9 /* AddIssueController.swift */; };
 		672C562C22758582005157CE /* IssueSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672C562B22758582005157CE /* IssueSectionHeader.swift */; };
 		673D515B227497900056DCB8 /* IssueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D515A227497900056DCB8 /* IssueController.swift */; };
 		673D515D2274CDB50056DCB8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D515C2274CDB50056DCB8 /* UIViewController+Extension.swift */; };
 		67BBD883226E36410001915D /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BBD882226E36410001915D /* Equipment.swift */; };
 		67BBD885226E447A0001915D /* AddFacilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BBD884226E447A0001915D /* AddFacilityController.swift */; };
+		67C63199227D9C3100D39BEB /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C63198227D9C3100D39BEB /* PictureCell.swift */; };
 		67CDE9A82272483E00D1E1BA /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CDE9A72272483E00D1E1BA /* String+Extension.swift */; };
 		67CFB65922763A18005674BE /* PrioritySegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CFB65822763A18005674BE /* PrioritySegmentedControl.swift */; };
 		67D038E72278B33800962128 /* HorizontalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D038E62278B33800962128 /* HorizontalCell.swift */; };
@@ -41,12 +42,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		672C562922757E99005157CE /* AddIssueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueController.swift; sourceTree = "<group>"; };
+		670EFE73227B724D00D0B2A9 /* AddIssueController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIssueController.swift; sourceTree = "<group>"; };
 		672C562B22758582005157CE /* IssueSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSectionHeader.swift; sourceTree = "<group>"; };
 		673D515A227497900056DCB8 /* IssueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueController.swift; sourceTree = "<group>"; };
 		673D515C2274CDB50056DCB8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		67BBD882226E36410001915D /* Equipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipment.swift; sourceTree = "<group>"; };
 		67BBD884226E447A0001915D /* AddFacilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFacilityController.swift; sourceTree = "<group>"; };
+		67C63198227D9C3100D39BEB /* PictureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
 		67CDE9A72272483E00D1E1BA /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		67CFB65822763A18005674BE /* PrioritySegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrioritySegmentedControl.swift; sourceTree = "<group>"; };
 		67D038E62278B33800962128 /* HorizontalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCell.swift; sourceTree = "<group>"; };
@@ -170,7 +172,7 @@
 		67F2A0BE226DF34C0035BB84 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				672C562922757E99005157CE /* AddIssueController.swift */,
+				670EFE73227B724D00D0B2A9 /* AddIssueController.swift */,
 				673D515A227497900056DCB8 /* IssueController.swift */,
 				67F2A0C1226DF3AE0035BB84 /* ListEquipmentController.swift */,
 				67DDCE8A2273A24E009A7086 /* ListEquipmentController+SearchBarDelegate.swift */,
@@ -188,6 +190,7 @@
 				67F2A0C4226DF4130035BB84 /* EquipmentCell.swift */,
 				67EE70CF2272CEC2003E98D5 /* TaskCell.swift */,
 				672C562B22758582005157CE /* IssueSectionHeader.swift */,
+				67C63198227D9C3100D39BEB /* PictureCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -305,14 +308,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				67CDE9A82272483E00D1E1BA /* String+Extension.swift in Sources */,
-				672C562A22757E99005157CE /* AddIssueController.swift in Sources */,
 				67DE3FD622746EA400F789B5 /* TaskSelectionController.swift in Sources */,
+				67C63199227D9C3100D39BEB /* PictureCell.swift in Sources */,
 				67F2A0D6226E19730035BB84 /* WorkSafeDataStack.swift in Sources */,
 				67EA7F71227043250092E125 /* UIImage+Extension.swift in Sources */,
 				67F2A0C9226DF4580035BB84 /* SegueHandler.swift in Sources */,
 				672C562C22758582005157CE /* IssueSectionHeader.swift in Sources */,
 				67DDCE8B2273A24E009A7086 /* ListEquipmentController+SearchBarDelegate.swift in Sources */,
 				67BBD883226E36410001915D /* Equipment.swift in Sources */,
+				670EFE74227B724D00D0B2A9 /* AddIssueController.swift in Sources */,
 				67DA5C11226FB50D005FB7C2 /* CapturePhotoService.swift in Sources */,
 				67D038E72278B33800962128 /* HorizontalCell.swift in Sources */,
 				67F2A0CE226E0B3E0035BB84 /* WorkSafe.xcdatamodeld in Sources */,
