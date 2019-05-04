@@ -62,6 +62,13 @@ class AddIssueController: UITableViewController,SegueHandler {
       //  ExpandableSection(name: "Responsibility", rowCount: 1, isExpanded: false, shouldExpanded: true)
     ]
     
+    
+    var lastDay:Int=31{
+        didSet{
+            datePickerView.reloadAllComponents()
+        }
+    }
+    
     //MARK:- Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +92,9 @@ class AddIssueController: UITableViewController,SegueHandler {
         
         datePickerView.delegate=self
         datePickerView.dataSource=self
+        lastDay=PickerDate.lastDayOfMonthBy(date: Date())
+        datePickerView.reloadAllComponents()
+        setDatePickerComponentsBy(date: Date())
         
         
         objectTextField.delegate=self
@@ -119,74 +129,118 @@ extension AddIssueController:UITextFieldDelegate{
 }
 
 
-enum PickerSection:Int,CaseIterable{
+enum DateSection:Int,CaseIterable{
     case Day=0
     case Month=1
     case Year=2
     
-    static func sectionForComponent(component:Int)->PickerSection{
-        guard let pickerSection=PickerSection(rawValue: component) else {fatalError("Wrong component value")}
+    static func sectionForComponent(component:Int)->DateSection{
+        guard let pickerSection=DateSection(rawValue: component) else {fatalError("Wrong component value")}
         return pickerSection
     }
 }
 
 struct PickerDate{
-    static func yearFromNow(inFuture distance:Int)->Int{
+    typealias DateComponent = (day:Int,month:Int,year:Int)
+    
+    static let months=["January","February","March","April","May","June","July","August","September","October","November","December"]
+    
+    static func yearsFromNow(inFuture distance:Int)->Int{
         let currentDate=Date()
         let calendar=Calendar.current
         //Extract each component
         let year=calendar.component(.year, from: currentDate)
-        return year
+        return year+distance
     }
     
-    static func lastDay(ofMonth month:Int, byYear year:Int)->Date?{
-        let interval = Calendar.current.dateInterval(of: .month, for:Date())
-         return interval?.end
+    static func lastDayOfMonthByComponents(month:Int, byYear year:Int)->Int{
+        let components=DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, era: nil, year: year, month: month, day: 1, hour: nil, minute: nil, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+
+        let date = Calendar.current.date(from: components)
+        let interval = Calendar.current.dateInterval(of: .day, for:date!)
+        
+        let calendar=Calendar.current
+        let range=calendar.range(of: .day, in: .month, for: date!)
+        
+        return range!.upperBound-1
+    }
+    
+    static func lastDayOfMonthBy(date:Date)->Int{
+        let month=Calendar.current.component(.month, from: date)
+        let year=Calendar.current.component(.year, from: date)
+        
+        return self.lastDayOfMonthByComponents(month: month, byYear: year)
+    }
+    
+    static func currentDateComponents()->DateComponent{
+        let currentDate=Date()
+        let calendar=Calendar.current
+        //Extract each component
+        let year=calendar.component(.year, from: currentDate)
+        let month=calendar.component(.month, from: currentDate)
+        let day=calendar.component(.day, from: currentDate)
+        
+        return (day,month:month,year:year)
+
     }
 }
 
 //MARK:- Custom Date Picker
 extension AddIssueController:UIPickerViewDelegate,UIPickerViewDataSource{
+    func setDatePickerComponentsBy(date:Date){
+        let dateComponents=PickerDate.currentDateComponents()
+        
+        datePickerView.selectRow(dateComponents.day-1, inComponent:DateSection.Day.rawValue, animated: false)
+        datePickerView.selectRow(dateComponents.month-1, inComponent:DateSection.Month.rawValue, animated: false)
+        datePickerView.selectRow(dateComponents.year, inComponent:DateSection.Year.rawValue, animated: false)
+    }
+    
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        switch PickerSection.sectionForComponent(component: component) {
+        switch DateSection.sectionForComponent(component: component) {
         case .Day:
-            return 31
+            return lastDay  //Calculated maximum days per month
         case .Month:
-            return 12
+            return 12 //maximum monthes per year
         case .Year:
-            return PickerDate.yearFromNow(inFuture: 20)
+            return 20// Display 20 years further from now
         }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return PickerSection.allCases.count
+        return DateSection.allCases.count
     }
     
-    
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        switch PickerSection.sectionForComponent(component: component) {
-        case .Day:
-            return
-        case .Month:
-            pickerView.reloadComponent(0)
-        case .Year:
-            pickerView.reloadComponent(0)
-        }
+        let month=pickerView.selectedRow(inComponent: 1)+1
+        let year=pickerView.selectedRow(inComponent: 2)+2019
+        
+        lastDay=PickerDate.lastDayOfMonthByComponents(month: month, byYear: year)
         
     }
     
     
    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        //Split each date component
         let x=pickerView.frame.width*CGFloat(component)
         let labelWidth=pickerView.frame.width / CGFloat(3)
         let y=pickerView.frame.height/2 - CGFloat(25)/CGFloat(2)
         let Label=UILabel(frame: CGRect(x:x, y: y, width: labelWidth, height: 25))
+        Label.textAlignment = .center
         
-        Label.text="Test"
+        switch DateSection.sectionForComponent(component: component){
+        case .Day:
+            Label.text="\(row+1)"
+        case .Month:
+            Label.text="\(PickerDate.months[row])"
+        case .Year:
+            Label.text="\(PickerDate.yearsFromNow(inFuture: row))"
+        }
+        
         return Label
     
     }
@@ -223,7 +277,7 @@ extension AddIssueController:IssueSectionHeaderActionItemDelegate{
         
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: sectionHeaderIndentifier) as! IssueSectionHeader
         
-        showActionButton(forSection: section, initialView: view,show:sectionContents[section].isExpanded)
+        showActionButton(forSection: section, initialView: view)
         
         //button touched handling
         view.delegate=self
@@ -234,15 +288,12 @@ extension AddIssueController:IssueSectionHeaderActionItemDelegate{
         return view
     }
     
-    func showActionButton(forSection section:Int,initialView:IssueSectionHeader?=nil,show:Bool){
+    func showActionButton(forSection section:Int,initialView:IssueSectionHeader?=nil,show:Bool=true){
         
         let sectionView = tableView.headerView(forSection: section) as? IssueSectionHeader ?? initialView
+
+        sectionView?.actionButton.isHidden = !show
         
-        if sectionContents[section].isExpanded{
-            sectionView?.actionButton.isHidden=false
-        }else{
-            sectionView?.actionButton.isHidden=true
-        }
     }
     
     func leftActionItemTouched(section: Int) {
@@ -254,13 +305,13 @@ extension AddIssueController:IssueSectionHeaderActionItemDelegate{
         if sectionContents[section].isExpanded {
             sectionContents[section].isExpanded = false
             //Change button title before deletion due to header cell recycling
-            showActionButton(forSection: section, show: false)
+           // showActionButton(forSection: section, show: false)
             
             tableView.deleteRows(at: changeRows, with: .fade)
         } else {
             sectionContents[section].isExpanded = true
             //Change button title before insertion due to header cell dequeing
-            showActionButton(forSection: section, show: false)
+           // showActionButton(forSection: section, show: false)
             
             tableView.insertRows(at: changeRows, with: .fade)
             

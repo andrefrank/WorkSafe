@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol HorizontalPickerViewDataSource: class {
     func numberOfItemsInPickerView(horizontalPickerView: HorizontalPickerView) -> Int
@@ -345,18 +346,22 @@ extension HorizontalPickerView{
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         tileViews()
+       
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         determineCurrentItem()
-        
+        AudioServicesPlayAlertSound(SystemSoundID(1306))
         if !contentView.isPagingEnabled {
             scrollToIndex(index: selectedItem, animated: true)
         }
     }
     
+    
+    
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         contentView.isPagingEnabled = true
+        
     }
     
     
